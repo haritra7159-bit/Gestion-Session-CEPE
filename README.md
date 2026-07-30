@@ -36,5 +36,6 @@ Architecture **MVC + DAO + Service Layer** : FXML/CSS → contrôleurs → servi
 Voir `docs/project-structure.md` pour le rôle des dossiers et `docs/architecture.md` pour les couches, règles et flux d'exécution.
 
 ## Auteurs et licence
+Projet universitaire en L2GB. Equipe composé de Fy Haritra et de Rianala
 
 Projet universitaire, équipe à compléter. Licence [MIT](LICENSE).
