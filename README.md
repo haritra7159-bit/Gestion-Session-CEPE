@@ -31,10 +31,14 @@ Architecture **MVC + DAO + Service Layer** : FXML/CSS → contrôleurs → servi
 
 `mvn clean test` · `mvn javafx:run` · `mvn clean package`
 
+## Développement avec VS Code
+
+Ouvrez directement le dossier du projet dans Visual Studio Code et installez les extensions recommandées. Les tâches `CEPE: compiler et tester`, `CEPE: démarrer JavaFX` et `CEPE: générer le package` sont disponibles depuis `Terminal > Run Task`. Le guide complet est dans `docs/vscode-setup.md`.
+
 ## Structure et documentation
 
-Voir `docs/project-structure.md` pour le rôle des dossiers et `docs/architecture.md` pour les couches, règles et flux d'exécution.
+Voir `docs/project-structure.md` pour le rôle des dossiers, `docs/architecture.md` pour les couches et règles, et `docs/database.md` pour le dictionnaire de données.
 
 ## Auteurs et licence
 
-Projet universitaire, équipe à compléter. Licence [MIT](LICENSE).
+Projet universitaire en L2GB à l'ENI Fianarantsoa, équipe composé de Fy Haritra et de Rianala. Licence [MIT](LICENSE).

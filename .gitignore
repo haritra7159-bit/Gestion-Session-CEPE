@@ -8,3 +8,5 @@ application-local.properties
 *.xlsx
 .DS_Store
 Thumbs.db
+
+.fake

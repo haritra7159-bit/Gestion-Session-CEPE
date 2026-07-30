@@ -1,0 +1,38 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "CEPE: compiler et tester",
+      "type": "shell",
+      "command": "mvn clean test",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "problemMatcher": ["$javac"],
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared",
+        "clear": true
+      }
+    },
+    {
+      "label": "CEPE: démarrer JavaFX",
+      "type": "shell",
+      "command": "mvn javafx:run",
+      "dependsOn": "CEPE: compiler et tester",
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared",
+        "clear": true
+      }
+    },
+    {
+      "label": "CEPE: générer le package",
+      "type": "shell",
+      "command": "mvn clean package",
+      "problemMatcher": ["$javac"]
+    }
+  ]
+}

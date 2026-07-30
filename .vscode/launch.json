@@ -1,0 +1,12 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Déboguer CEPE",
+      "request": "launch",
+      "mainClass": "mg.cepe.gestion.Main",
+      "projectName": "gestion-session-cepe"
+    }
+  ]
+}
