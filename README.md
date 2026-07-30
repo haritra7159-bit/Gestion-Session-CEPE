@@ -8,9 +8,6 @@ Application JavaFX de gestion d'une session du Certificat d'Étude Primaire Él�
 - Calculer les moyennes pondérées et les décisions.
 - Produire listes d'admission, classement et relevés PDF.
 
-## Aperçus
-
-Les captures d'écran seront ajoutées dans `docs/screenshots/` : tableau de bord, CRUD, délibération et relevé PDF.
 
 ## Technologies
 
@@ -38,4 +35,3 @@ Voir `docs/project-structure.md` pour le rôle des dossiers et `docs/architectur
 ## Auteurs et licence
 Projet universitaire en L2GB. Equipe composé de Fy Haritra et de Rianala
 
-Projet universitaire, équipe à compléter. Licence [MIT](LICENSE).
