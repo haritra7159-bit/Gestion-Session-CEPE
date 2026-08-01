@@ -4,6 +4,8 @@ target/
 *.class
 *.log
 application-local.properties
+.env
+data/postgres/
 *.pdf
 *.xlsx
 .DS_Store

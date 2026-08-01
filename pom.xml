@@ -5,23 +5,38 @@
     <artifactId>gestion-session-cepe</artifactId>
     <version>0.1.0-SNAPSHOT</version>
     <properties>
-        <maven.compiler.release>21</maven.compiler.release>
+        <maven.compiler.release>25</maven.compiler.release>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <javafx.version>21.0.6</javafx.version>
+        <javafx.version>25.0.0</javafx.version>
+        <postgresql.version>42.7.5</postgresql.version>
+        <hikari.version>6.3.0</hikari.version>
+        <flyway.version>10.20.1</flyway.version>
         <junit.version>5.11.4</junit.version>
+        <mockito.version>5.14.2</mockito.version>
+        <testcontainers.version>1.20.5</testcontainers.version>
+        <logback.version>1.5.16</logback.version>
     </properties>
     <dependencies>
         <dependency><groupId>org.openjfx</groupId><artifactId>javafx-controls</artifactId><version>${javafx.version}</version></dependency>
         <dependency><groupId>org.openjfx</groupId><artifactId>javafx-fxml</artifactId><version>${javafx.version}</version></dependency>
-        <dependency><groupId>org.postgresql</groupId><artifactId>postgresql</artifactId><version>42.7.5</version></dependency>
+        <dependency><groupId>org.postgresql</groupId><artifactId>postgresql</artifactId><version>${postgresql.version}</version></dependency>
+        <dependency><groupId>com.zaxxer</groupId><artifactId>HikariCP</artifactId><version>${hikari.version}</version></dependency>
+        <dependency><groupId>org.flywaydb</groupId><artifactId>flyway-core</artifactId><version>${flyway.version}</version></dependency>
+        <dependency><groupId>org.flywaydb</groupId><artifactId>flyway-database-postgresql</artifactId><version>${flyway.version}</version></dependency>
         <dependency><groupId>com.github.librepdf</groupId><artifactId>openpdf</artifactId><version>2.0.3</version></dependency>
         <dependency><groupId>org.apache.poi</groupId><artifactId>poi-ooxml</artifactId><version>5.4.0</version></dependency>
-        <dependency><groupId>org.slf4j</groupId><artifactId>slf4j-simple</artifactId><version>2.0.16</version></dependency>
+        <dependency><groupId>ch.qos.logback</groupId><artifactId>logback-classic</artifactId><version>${logback.version}</version></dependency>
         <dependency><groupId>org.junit.jupiter</groupId><artifactId>junit-jupiter</artifactId><version>${junit.version}</version><scope>test</scope></dependency>
+        <dependency><groupId>org.mockito</groupId><artifactId>mockito-junit-jupiter</artifactId><version>${mockito.version}</version><scope>test</scope></dependency>
+        <dependency><groupId>org.testcontainers</groupId><artifactId>junit-jupiter</artifactId><version>${testcontainers.version}</version><scope>test</scope></dependency>
+        <dependency><groupId>org.testcontainers</groupId><artifactId>postgresql</artifactId><version>${testcontainers.version}</version><scope>test</scope></dependency>
     </dependencies>
     <build><plugins>
         <plugin><groupId>org.apache.maven.plugins</groupId><artifactId>maven-compiler-plugin</artifactId><version>3.13.0</version><configuration><release>${maven.compiler.release}</release></configuration></plugin>
         <plugin><groupId>org.openjfx</groupId><artifactId>javafx-maven-plugin</artifactId><version>0.0.8</version><configuration><mainClass>mg.cepe.gestion.application.CepeApplication</mainClass></configuration></plugin>
         <plugin><groupId>org.apache.maven.plugins</groupId><artifactId>maven-surefire-plugin</artifactId><version>3.5.2</version></plugin>
+        <plugin><groupId>org.apache.maven.plugins</groupId><artifactId>maven-enforcer-plugin</artifactId><version>3.5.0</version><executions><execution><id>require-java-25</id><goals><goal>enforce</goal></goals><configuration><rules><requireJavaVersion><version>[25,26)</version></requireJavaVersion></rules></configuration></execution></executions></plugin>
+        <plugin><groupId>org.apache.maven.plugins</groupId><artifactId>maven-checkstyle-plugin</artifactId><version>3.6.0</version><configuration><configLocation>config/checkstyle/checkstyle.xml</configLocation><includeTestSourceDirectory>true</includeTestSourceDirectory></configuration></plugin>
+        <plugin><groupId>org.flywaydb</groupId><artifactId>flyway-maven-plugin</artifactId><version>${flyway.version}</version><configuration><url>${env.CEPE_DB_URL}</url><user>${env.CEPE_DB_USER}</user><password>${env.CEPE_DB_PASSWORD}</password><locations><location>filesystem:database/migration</location></locations></configuration><dependencies><dependency><groupId>org.flywaydb</groupId><artifactId>flyway-database-postgresql</artifactId><version>${flyway.version}</version></dependency></dependencies></plugin>
     </plugins></build>
 </project>

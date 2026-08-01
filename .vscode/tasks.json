@@ -4,35 +4,40 @@
     {
       "label": "CEPE: compiler et tester",
       "type": "shell",
-      "command": "mvn clean test",
-      "group": {
-        "kind": "build",
-        "isDefault": true
-      },
-      "problemMatcher": ["$javac"],
-      "presentation": {
-        "reveal": "always",
-        "panel": "shared",
-        "clear": true
-      }
+      "command": "./mvnw",
+      "args": ["clean", "test", "-DskipITs"],
+      "group": "test",
+      "presentation": { "reveal": "always", "panel": "shared" },
+      "problemMatcher": ["$javac"]
     },
     {
       "label": "CEPE: démarrer JavaFX",
       "type": "shell",
-      "command": "mvn javafx:run",
-      "dependsOn": "CEPE: compiler et tester",
-      "problemMatcher": [],
-      "presentation": {
-        "reveal": "always",
-        "panel": "shared",
-        "clear": true
-      }
+      "command": "./mvnw",
+      "args": ["javafx:run"],
+      "group": "build",
+      "presentation": { "reveal": "always", "panel": "dedicated" },
+      "problemMatcher": []
     },
     {
-      "label": "CEPE: générer le package",
+      "label": "CEPE: package",
       "type": "shell",
-      "command": "mvn clean package",
-      "problemMatcher": ["$javac"]
+      "command": "./mvnw",
+      "args": ["clean", "package", "-DskipTests"],
+      "group": "build"
+    },
+    {
+      "label": "CEPE: Flyway migrate",
+      "type": "shell",
+      "command": "./mvnw",
+      "args": ["flyway:migrate"],
+      "options": {
+        "env": {
+          "CEPE_DB_URL": "jdbc:postgresql://localhost:5432/cepe",
+          "CEPE_DB_USER": "cepe_user",
+          "CEPE_DB_PASSWORD": "ton_mot_de_passe"
+        }
+      }
     }
   ]
 }

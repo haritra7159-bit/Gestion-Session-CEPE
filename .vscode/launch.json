@@ -3,10 +3,19 @@
   "configurations": [
     {
       "type": "java",
-      "name": "Déboguer CEPE",
+      "name": "Déboguer CEPE (JavaFX)",
       "request": "launch",
-      "mainClass": "mg.cepe.gestion.Main",
-      "projectName": "gestion-session-cepe"
+      "mainClass": "mg.cepe.gestion.application.CepeApplication",
+      "projectName": "gestion-session-cepe",
+      "vmArgs": "--module-path ${env:PATH_TO_FX} --add-modules javafx.controls,javafx.fxml -Dprism.order=sw",
+      "cwd": "${workspaceFolder}"
+    },
+    {
+      "type": "java",
+      "name": "Lancer via Maven javafx:run",
+      "request": "launch",
+      "mainClass": "",
+      "preLaunchTask": "CEPE: démarrer JavaFX"
     }
   ]
 }
