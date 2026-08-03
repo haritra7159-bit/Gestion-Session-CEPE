@@ -4,16 +4,16 @@
     {
       "label": "CEPE: compiler et tester",
       "type": "shell",
-      "command": "./mvnw",
+      "command": "mvnw.cmd",
       "args": ["clean", "test", "-DskipITs"],
       "group": "test",
       "presentation": { "reveal": "always", "panel": "shared" },
-      "problemMatcher": ["$javac"]
+      "problemMatcher": ["$msCompile"]
     },
     {
       "label": "CEPE: démarrer JavaFX",
       "type": "shell",
-      "command": "./mvnw",
+      "command": "mvnw.cmd",
       "args": ["javafx:run"],
       "group": "build",
       "presentation": { "reveal": "always", "panel": "dedicated" },
@@ -22,20 +22,20 @@
     {
       "label": "CEPE: package",
       "type": "shell",
-      "command": "./mvnw",
+      "command": "mvnw.cmd",
       "args": ["clean", "package", "-DskipTests"],
       "group": "build"
     },
     {
       "label": "CEPE: Flyway migrate",
       "type": "shell",
-      "command": "./mvnw",
+      "command": "mvnw.cmd",
       "args": ["flyway:migrate"],
       "options": {
         "env": {
           "CEPE_DB_URL": "jdbc:postgresql://localhost:5432/cepe",
           "CEPE_DB_USER": "cepe_user",
-          "CEPE_DB_PASSWORD": "ton_mot_de_passe"
+          "CEPE_DB_PASSWORD": "mdp1706"
         }
       }
     }

@@ -1,23 +1,35 @@
 {
+  "css.lint.compatibleVendorPrefixes": "ignore",
+  "css.lint.unknownProperties": "ignore",
+  "css.lint.validProperties": [
+    "-fx-alignment",
+    "-fx-background-color",
+    "-fx-cursor",
+    "-fx-font-family",
+    "-fx-font-size",
+    "-fx-font-weight",
+    "-fx-padding",
+    "-fx-pref-width",
+    "-fx-text-fill"
+  ],
+  "vscode-edge-devtools.webhint": false,
   "java.configuration.runtimes": [
     {
       "name": "JavaSE-25",
-      "path": "C:/Program Files/Eclipse Adoptium/jdk-25.x.x-hotspot",  // adapte le chemin
+      "path": "C:/Program Files/Eclipse Adoptium/jdk-25.0.4.7-hotspot",
       "default": true
     }
   ],
-  "java.jdt.ls.java.home": "C:/Program Files/Eclipse Adoptium/jdk-25.x.x-hotspot",
+  "java.jdt.ls.java.home": "C:/Program Files/Eclipse Adoptium/jdk-25.0.4.7-hotspot",
   "java.configuration.updateBuildConfiguration": "automatic",
   "java.compile.nullAnalysis.mode": "automatic",
-  "java.format.settings.url": "",
-  "java.saveActions.organizeImports": true,
   "java.sources.organizeImports.starThreshold": 5,
   "java.sources.organizeImports.staticStarThreshold": 3,
   "java.debug.settings.hotCodeReplace": "auto",
   "java.test.config": {
     "vmArgs": ["-Xmx1G"]
   },
-  "maven.executable.path": "",  // laisse vide → utilise mvnw
+  "maven.executable.path": "${workspaceFolder}/mvnw.cmd",
   "maven.terminal.useJavaHome": true,
   "files.exclude": {
     "**/target": true,
@@ -41,6 +53,6 @@
   },
   "javafx.modules": "javafx.controls,javafx.fxml",
   "terminal.integrated.env.windows": {
-    "JAVA_HOME": "C:/Program Files/Eclipse Adoptium/jdk-25.x.x-hotspot"
+    "JAVA_HOME": "C:/Program Files/Eclipse Adoptium/jdk-25.0.4.7-hotspot"
   }
 }

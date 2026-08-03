@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="mg.cepe.gestion.controller.EcoleController"
+      spacing="16"
+      styleClass="content">
+    <padding>
+        <Insets top="24" right="32" bottom="24" left="32"/>
+    </padding>
+
+    <Label text="Écoles" styleClass="page-title"/>
+    <Label text="Gestion des établissements scolaires de la session CEPE." styleClass="page-description"/>
+
+    <TableView fx:id="tableEcoles" VBox.vgrow="ALWAYS" prefHeight="280">
+        <columns>
+            <TableColumn fx:id="colCode" text="Code" prefWidth="120"/>
+            <TableColumn fx:id="colDesign" text="Désignation" prefWidth="320"/>
+            <TableColumn fx:id="colAdresse" text="Adresse" prefWidth="280"/>
+        </columns>
+    </TableView>
+
+    <Label text="Formulaire" styleClass="section-title"/>
+
+    <GridPane hgap="12" vgap="10">
+        <columnConstraints>
+            <ColumnConstraints minWidth="110"/>
+            <ColumnConstraints hgrow="ALWAYS"/>
+        </columnConstraints>
+        <Label text="Code" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+        <TextField fx:id="txtCode" promptText="ex. ECO003" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+        <Label text="Désignation" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+        <TextField fx:id="txtDesign" promptText="Nom de l'école" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+        <Label text="Adresse" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+        <TextField fx:id="txtAdresse" promptText="Ville / adresse" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+    </GridPane>
+
+    <HBox spacing="10">
+        <Button text="Nouveau" onAction="#onNouveau" styleClass="btn-secondary"/>
+        <Button text="Enregistrer" onAction="#onEnregistrer" styleClass="btn-primary"/>
+        <Button text="Supprimer" onAction="#onSupprimer" styleClass="btn-danger"/>
+        <Button text="Rafraîchir" onAction="#onRafraichir" styleClass="btn-secondary"/>
+    </HBox>
+</VBox>

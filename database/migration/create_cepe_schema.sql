@@ -19,7 +19,7 @@ CREATE TABLE matiere (
 );
 
 CREATE TABLE note (
-    annee_scolaire VARCHAR(9) NOT NULL CHECK (annee_scolaire ~ '^\\d{4}-\\d{4}$'),
+    annee_scolaire VARCHAR(9) NOT NULL CHECK (annee_scolaire ~ '^[0-9]{4}-[0-9]{4}$'),
     numEleve VARCHAR(20) NOT NULL REFERENCES eleve (numEleve) ON UPDATE CASCADE ON DELETE RESTRICT,
     numMat VARCHAR(20) NOT NULL REFERENCES matiere (numMat) ON UPDATE CASCADE ON DELETE RESTRICT,
     note NUMERIC(4, 2) NOT NULL CHECK (note BETWEEN 0 AND 20),
