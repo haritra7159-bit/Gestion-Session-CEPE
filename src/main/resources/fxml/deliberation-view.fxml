@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<VBox spacing="15.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mg.cepe.gestion.controller.DeliberationController">
+   <padding><Insets top="20" right="30" bottom="20" left="30"/></padding>
+   <Label text="Délibération" styleClass="page-title">
+      <font><Font size="24.0"/></font>
+   </Label>
+
+   <HBox spacing="10" alignment="CENTER_LEFT">
+      <Label text="Année scolaire :"/>
+      <TextField fx:id="txtAnnee" promptText="2022-2023" text="2022-2023"/>
+      <Button text="Lancer la délibération" onAction="#handleDeliberer"/>
+   </HBox>
+
+   <HBox spacing="10">
+      <Button text="Réussis" onAction="#handleReussis"/>
+      <Button text="Échoués" onAction="#handleEchoues"/>
+      <Button text="Admis en 6ème" onAction="#handleAdmis"/>
+   </HBox>
+
+   <TableView fx:id="tableResultats" VBox.vgrow="ALWAYS">
+      <columns>
+         <TableColumn fx:id="colNum" text="N°" prefWidth="60"/>
+         <TableColumn fx:id="colNom" text="Nom" prefWidth="120"/>
+         <TableColumn fx:id="colPrenom" text="Prénom" prefWidth="120"/>
+         <TableColumn fx:id="colEcole" text="École" prefWidth="180"/>
+         <TableColumn fx:id="colMoyenne" text="Moyenne" prefWidth="80"/>
+         <TableColumn fx:id="colDecision" text="Décision" prefWidth="100"/>
+      </columns>
+   </TableView>
+</VBox>

@@ -1,1 +1,0 @@
--- Canonical schema: database/02_schema_and_seed.sql

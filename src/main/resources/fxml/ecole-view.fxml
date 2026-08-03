@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<VBox spacing="15.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mg.cepe.gestion.controller.EcoleController">
+   <padding><Insets top="20" right="30" bottom="20" left="30"/></padding>
+   <Label text="Gestion des Écoles" styleClass="page-title">
+      <font><Font size="24.0"/></font>
+   </Label>
+
+   <GridPane hgap="10" vgap="10">
+      <Label text="Numéro :" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+      <TextField fx:id="txtNumEcole" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+      <Label text="Désignation :" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+      <TextField fx:id="txtDesign" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+      <Label text="Adresse :" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+      <TextField fx:id="txtAdresse" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+   </GridPane>
+
+   <HBox spacing="10">
+      <Button text="Ajouter" onAction="#handleAjouter"/>
+      <Button text="Modifier" onAction="#handleModifier"/>
+      <Button text="Supprimer" onAction="#handleSupprimer"/>
+      <Button text="Réinitialiser" onAction="#handleClear"/>
+   </HBox>
+
+   <TableView fx:id="tableEcoles" VBox.vgrow="ALWAYS">
+      <columns>
+         <TableColumn fx:id="colNum" text="Numéro" prefWidth="100"/>
+         <TableColumn fx:id="colDesign" text="Désignation" prefWidth="250"/>
+         <TableColumn fx:id="colAdresse" text="Adresse" prefWidth="300"/>
+      </columns>
+   </TableView>
+</VBox>

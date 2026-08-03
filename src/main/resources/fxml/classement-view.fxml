@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<VBox spacing="15.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mg.cepe.gestion.controller.ClassementController">
+   <padding><Insets top="20" right="30" bottom="20" left="30"/></padding>
+   <Label text="Classement par ordre de mérite" styleClass="page-title">
+      <font><Font size="24.0"/></font>
+   </Label>
+
+   <HBox spacing="10" alignment="CENTER_LEFT">
+      <Label text="Année scolaire :"/>
+      <TextField fx:id="txtAnnee" promptText="2022-2023" text="2022-2023"/>
+      <Button text="Afficher le classement" onAction="#handleClassement"/>
+   </HBox>
+
+   <TableView fx:id="tableClassement" VBox.vgrow="ALWAYS">
+      <columns>
+         <TableColumn fx:id="colRang" text="Rang" prefWidth="60"/>
+         <TableColumn fx:id="colNom" text="Nom" prefWidth="150"/>
+         <TableColumn fx:id="colPrenom" text="Prénom" prefWidth="150"/>
+         <TableColumn fx:id="colEcole" text="École" prefWidth="200"/>
+         <TableColumn fx:id="colMoyenne" text="Moyenne" prefWidth="100"/>
+      </columns>
+   </TableView>
+</VBox>

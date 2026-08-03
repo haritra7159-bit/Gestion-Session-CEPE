@@ -1,76 +1,48 @@
 package mg.cepe.gestion.controller;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.io.StringWriter;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.control.Alert;
-import javafx.scene.control.TextArea;
-import javafx.scene.layout.StackPane;
+import javafx.scene.control.Button;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.VBox;
 
-/** Coque principale : navigation entre les modules. */
-public final class MainController {
+import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-    private static final Logger LOG = LoggerFactory.getLogger(MainController.class);
+public class MainController implements Initializable {
 
-    @FXML
-    private StackPane contentArea;
+    @FXML private BorderPane mainContainer;
+    @FXML private VBox sidebar;
+    @FXML private Button btnEcoles;
+    @FXML private Button btnEleves;
+    @FXML private Button btnMatieres;
+    @FXML private Button btnNotes;
+    @FXML private Button btnDeliberation;
+    @FXML private Button btnClassement;
+    @FXML private Button btnRecherche;
+    @FXML private Button btnReleve;
 
-    @FXML
-    private void showEcoles() {
-        chargerVue("/fxml/ecoles-view.fxml");
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        btnEcoles.setOnAction(e -> loadView("/fxml/ecole-view.fxml"));
+        btnEleves.setOnAction(e -> loadView("/fxml/eleve-view.fxml"));
+        btnMatieres.setOnAction(e -> loadView("/fxml/matiere-view.fxml"));
+        btnNotes.setOnAction(e -> loadView("/fxml/note-view.fxml"));
+        btnDeliberation.setOnAction(e -> loadView("/fxml/deliberation-view.fxml"));
+        btnClassement.setOnAction(e -> loadView("/fxml/classement-view.fxml"));
+        btnRecherche.setOnAction(e -> loadView("/fxml/recherche-view.fxml"));
+        btnReleve.setOnAction(e -> loadView("/fxml/releve-view.fxml"));
     }
 
-    @FXML
-    private void showComingSoon() {
-        contentArea.getChildren().setAll(createPlaceholder(
-                "Module en cours de réalisation",
-                "Ce module sera ajouté prochainement."));
-    }
-
-    private void chargerVue(String fxmlPath) {
+    private void loadView(String fxmlPath) {
         try {
-            FXMLLoader loader = new FXMLLoader(MainController.class.getResource(fxmlPath));
-            if (loader.getLocation() == null) {
-                throw new IOException("Ressource introuvable sur le classpath : " + fxmlPath
-                        + "\nVérifie que le fichier est dans src/main/resources" + fxmlPath);
-            }
-            Node view = loader.load();
-            contentArea.getChildren().setAll(view);
-        } catch (Exception e) {
-            LOG.error("Impossible de charger {}", fxmlPath, e);
-            StringWriter sw = new StringWriter();
-            e.printStackTrace(new PrintWriter(sw));
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Erreur");
-            alert.setHeaderText("Chargement de la vue impossible");
-            alert.setContentText(e.getMessage());
-            TextArea area = new TextArea(sw.toString());
-            area.setEditable(false);
-            area.setWrapText(true);
-            area.setPrefWidth(560);
-            area.setPrefHeight(280);
-            alert.getDialogPane().setExpandableContent(area);
-            alert.getDialogPane().setExpanded(true);
-            alert.showAndWait();
+            Node view = FXMLLoader.load(getClass().getResource(fxmlPath));
+            mainContainer.setCenter(view);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-    }
-
-    private static Node createPlaceholder(String title, String description) {
-        javafx.scene.layout.VBox box = new javafx.scene.layout.VBox(12);
-        box.getStyleClass().add("content");
-        box.setPadding(new javafx.geometry.Insets(42, 48, 42, 48));
-        javafx.scene.control.Label t = new javafx.scene.control.Label(title);
-        t.getStyleClass().add("page-title");
-        javafx.scene.control.Label d = new javafx.scene.control.Label(description);
-        d.getStyleClass().add("page-description");
-        box.getChildren().addAll(t, d);
-        return box;
     }
 }
