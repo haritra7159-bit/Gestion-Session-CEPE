@@ -11,7 +11,7 @@ Application JavaFX de gestion d'une session du Certificat d'Étude Primaire Él�
 
 ## Technologies
 
-Java 21, JavaFX, CSS JavaFX, PostgreSQL, JDBC, Maven, JUnit 5, SLF4J, OpenPDF et Apache POI.
+Java 25, JavaFX, CSS JavaFX, PostgreSQL, JDBC, Maven, JUnit 5, SLF4J, OpenPDF et Apache POI.
 
 ## Architecture
 
@@ -19,7 +19,7 @@ Architecture **MVC + DAO + Service Layer** : FXML/CSS → contrôleurs → servi
 
 ## Installation
 
-1. Installer Java 21, Maven 3.9+ et PostgreSQL 16+.
+1. Installer Java 25, Maven 3.9+ et PostgreSQL 16+.
 2. Exécuter `psql -U postgres -f database/01_create_database.sql`.
 3. Exécuter `psql -U postgres -d cepe -f database/02_schema_and_seed.sql`.
 4. Adapter `src/main/resources/application.properties` avec les identifiants locaux.
