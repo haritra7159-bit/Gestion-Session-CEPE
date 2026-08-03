@@ -21,14 +21,16 @@ public class ClassementController implements Initializable {
     @FXML private TableColumn<ResultatEleve, String> colNom;
     @FXML private TableColumn<ResultatEleve, String> colPrenom;
     @FXML private TableColumn<ResultatEleve, String> colEcole;
-    @FXML private TableColumn<ResultatEleve, Double> colMoyenne;
+    @FXML private TableColumn<ResultatEleve, Number> colMoyenne;
 
     private final DeliberationService service = new DeliberationServiceImpl();
     private final ObservableList<ResultatEleve> data = FXCollections.observableArrayList();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        colRang.setCellValueFactory(c -> new javafx.beans.property.SimpleIntegerProperty(tableClassement.getItems().indexOf(c.getValue()) + 1).asObject());
+        // CORRECTION : suppression de .asObject() - SimpleIntegerProperty implements ObservableValue<Number>
+        colRang.setCellValueFactory(c -> new javafx.beans.property.SimpleIntegerProperty(
+            tableClassement.getItems().indexOf(c.getValue()) + 1));
         colNom.setCellValueFactory(new PropertyValueFactory<>("nom"));
         colPrenom.setCellValueFactory(new PropertyValueFactory<>("prenom"));
         colEcole.setCellValueFactory(new PropertyValueFactory<>("nomEcole"));

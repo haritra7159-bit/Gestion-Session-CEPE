@@ -30,7 +30,8 @@ public class MatiereController implements Initializable {
         spCoef.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 10, 1));
         colNum.setCellValueFactory(c -> new javafx.beans.property.SimpleStringProperty(c.getValue().getNumMat()));
         colDesign.setCellValueFactory(c -> new javafx.beans.property.SimpleStringProperty(c.getValue().getDesignMat()));
-        colCoef.setCellValueFactory(c -> new javafx.beans.property.SimpleIntegerProperty(c.getValue().getCoef()).asObject());
+        // CORRECTION : suppression de .asObject() - SimpleIntegerProperty implements ObservableValue<Number>
+        colCoef.setCellValueFactory(c -> new javafx.beans.property.SimpleIntegerProperty(c.getValue().getCoef()));
         tableMatieres.setItems(data);
         tableMatieres.getSelectionModel().selectedItemProperty().addListener((obs, old, val) -> { if (val != null) fillForm(val); });
         refresh();

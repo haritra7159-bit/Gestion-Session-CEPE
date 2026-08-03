@@ -48,7 +48,8 @@ public class NoteController implements Initializable {
             Matiere m = matiereService.trouverParId(c.getValue().getNumMat());
             return new javafx.beans.property.SimpleStringProperty(m != null ? m.getDesignMat() : "");
         });
-        colNote.setCellValueFactory(c -> new javafx.beans.property.SimpleDoubleProperty(c.getValue().getNote()).asObject());
+        // CORRECTION : suppression de .asObject() - SimpleDoubleProperty implements ObservableValue<Number>
+        colNote.setCellValueFactory(c -> new javafx.beans.property.SimpleDoubleProperty(c.getValue().getNote()));
         tableNotes.setItems(data);
         tableNotes.getSelectionModel().selectedItemProperty().addListener((obs, old, val) -> { if (val != null) fillForm(val); });
         refresh();
