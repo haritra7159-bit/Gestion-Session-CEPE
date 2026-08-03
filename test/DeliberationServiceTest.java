@@ -1,5 +1,8 @@
 package mg.cepe.gestion.service;
 
+import java.lang.reflect.Method;
+import java.util.List;
+
 import mg.cepe.gestion.service.impl.DeliberationServiceImpl;
 import org.junit.jupiter.api.Test;
 
@@ -23,15 +26,24 @@ class DeliberationServiceTest {
 
     @Test
     void testDeliberationReussis() {
-        var reussis = service.listerReussis("2022-2023");
+        List<?> reussis = service.listerReussis("2022-2023");
         assertFalse(reussis.isEmpty());
-        assertEquals("RAKOTO", reussis.get(0).getNom());
+        assertEquals("RAKOTO", readProperty(reussis.get(0), "getNom"));
     }
 
     @Test
     void testAdmisSixieme() {
-        var admis = service.listerAdmisSixieme("2022-2023");
+        List<?> admis = service.listerAdmisSixieme("2022-2023");
         assertFalse(admis.isEmpty());
-        assertTrue(admis.get(0).getMoyenne() > 12.0);
+        assertTrue(((Number) readProperty(admis.get(0), "getMoyenne")).doubleValue() > 12.0);
+    }
+
+    private Object readProperty(Object target, String methodName) {
+        try {
+            Method method = target.getClass().getMethod(methodName);
+            return method.invoke(target);
+        } catch (ReflectiveOperationException e) {
+            throw new AssertionError(e);
+        }
     }
 }

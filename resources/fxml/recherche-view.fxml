@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+<VBox spacing="15.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mg.cepe.gestion.controller.RechercheController">
+   <padding><Insets top="20" right="30" bottom="20" left="30"/></padding>
+   <Label text="Recherche d'élève" styleClass="page-title"><font><Font size="24.0"/></font></Label>
+   <HBox spacing="10" alignment="CENTER_LEFT">
+      <Label text="Nom ou prénom :"/><TextField fx:id="txtCritere" promptText="Entrez un nom..." HBox.hgrow="ALWAYS"/><Button text="Rechercher" onAction="#handleRechercher"/>
+   </HBox>
+   <TableView fx:id="tableEleves" VBox.vgrow="ALWAYS">
+      <columns><TableColumn fx:id="colNum" text="Numéro" prefWidth="80"/><TableColumn fx:id="colNom" text="Nom" prefWidth="150"/><TableColumn fx:id="colPrenom" text="Prénom" prefWidth="150"/><TableColumn fx:id="colEcole" text="École" prefWidth="250"/><TableColumn fx:id="colNaissance" text="Date naissance" prefWidth="120"/></columns>
+   </TableView>
+</VBox>
