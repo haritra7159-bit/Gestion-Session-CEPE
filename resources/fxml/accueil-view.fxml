@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.*?>
+<VBox spacing="28.0" styleClass="content" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mg.cepe.gestion.controller.AccueilController">
+   <padding><Insets top="36.0" right="40.0" bottom="36.0" left="40.0"/></padding>
+
+   <!-- Hero -->
+   <VBox spacing="8.0">
+      <Label text="Bienvenue dans Gestion CEPE" styleClass="hero-title"/>
+      <Label text="Gérez les écoles, les élèves, les matières, les notes et générez automatiquement les délibérations, classements et relevés PDF." styleClass="hero-subtitle" wrapText="true"/>
+   </VBox>
+
+   <!-- Stats -->
+   <HBox spacing="16.0">
+      <VBox styleClass="stat-card" HBox.hgrow="ALWAYS">
+         <Label fx:id="lblNbEleves" text="0" styleClass="stat-value"/>
+         <Label text="Élèves inscrits" styleClass="stat-label"/>
+      </VBox>
+      <VBox styleClass="stat-card" HBox.hgrow="ALWAYS">
+         <Label fx:id="lblNbEcoles" text="0" styleClass="stat-value"/>
+         <Label text="Écoles partenaires" styleClass="stat-label"/>
+      </VBox>
+      <VBox styleClass="stat-card" HBox.hgrow="ALWAYS">
+         <Label fx:id="lblNbMatieres" text="0" styleClass="stat-value"/>
+         <Label text="Matières évaluées" styleClass="stat-label"/>
+      </VBox>
+   </HBox>
+
+   <!-- Fonctionnalités -->
+   <Label text="Fonctionnalités" styleClass="page-title">
+      <VBox.margin><Insets top="12.0"/></VBox.margin>
+   </Label>
+
+   <GridPane hgap="16.0" vgap="16.0">
+      <columnConstraints>
+         <ColumnConstraints percentWidth="33.33"/>
+         <ColumnConstraints percentWidth="33.33"/>
+         <ColumnConstraints percentWidth="33.33"/>
+      </columnConstraints>
+
+      <VBox styleClass="card, card-hover" GridPane.columnIndex="0" GridPane.rowIndex="0" spacing="6.0">
+         <Label text="🏫" styleClass="card-icon"/>
+         <Label text="Gestion des Écoles" styleClass="card-title"/>
+         <Label text="Enregistrez et modifiez les écoles participantes à la session CEPE." styleClass="card-desc"/>
+      </VBox>
+
+      <VBox styleClass="card, card-hover" GridPane.columnIndex="1" GridPane.rowIndex="0" spacing="6.0">
+         <Label text="🎓" styleClass="card-icon"/>
+         <Label text="Gestion des Élèves" styleClass="card-title"/>
+         <Label text="Inscrivez les candidats, consultez leurs notes et générez leurs relevés en un clic." styleClass="card-desc"/>
+      </VBox>
+
+      <VBox styleClass="card, card-hover" GridPane.columnIndex="2" GridPane.rowIndex="0" spacing="6.0">
+         <Label text="📚" styleClass="card-icon"/>
+         <Label text="Gestion des Matières" styleClass="card-title"/>
+         <Label text="Définissez les matières et leurs coefficients pour le calcul des moyennes." styleClass="card-desc"/>
+      </VBox>
+
+      <VBox styleClass="card, card-hover" GridPane.columnIndex="0" GridPane.rowIndex="1" spacing="6.0">
+         <Label text="⚖️" styleClass="card-icon"/>
+         <Label text="Délibération" styleClass="card-title"/>
+         <Label text="Calculez automatiquement les moyennes pondérées et les décisions de passage." styleClass="card-desc"/>
+      </VBox>
+
+      <VBox styleClass="card, card-hover" GridPane.columnIndex="1" GridPane.rowIndex="1" spacing="6.0">
+         <Label text="🏆" styleClass="card-icon"/>
+         <Label text="Classement" styleClass="card-title"/>
+         <Label text="Obtenez le classement par mérite des admis et des élèves en échec." styleClass="card-desc"/>
+      </VBox>
+
+      <VBox styleClass="card, card-hover" GridPane.columnIndex="2" GridPane.rowIndex="1" spacing="6.0">
+         <Label text="📄" styleClass="card-icon"/>
+         <Label text="Relevés PDF" styleClass="card-title"/>
+         <Label text="Produisez des relevés de notes officiels formatés en PDF pour chaque élève." styleClass="card-desc"/>
+      </VBox>
+   </GridPane>
+</VBox>
