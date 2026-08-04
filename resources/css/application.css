@@ -23,7 +23,7 @@
 .sidebar {
     -fx-pref-width: 260px;
     pref-width: 260px;
-    -fx-background-color: linear-gradient(to bottom, #1e3a5f, #152a45);
+    -fx-background-color: linear-gradient(to bottom, #0a69e6, #2246e7);
     background-color: #096de0;
     -fx-padding: 24 18 24 18;
     padding: 24 18 24 18;
@@ -54,8 +54,8 @@
 }
 
 .subtitle {
-    -fx-text-fill: #94a3b8;
-    text-fill: #94a3b8;
+    -fx-text-fill: #fcecec;
+    text-fill: #ffffff;
     -fx-font-size: 13px;
     font-size: 13px;
     -fx-padding: 0 0 20 0;
@@ -67,8 +67,8 @@
     alignment: CENTER_LEFT;
     -fx-background-color: transparent;
     background-color: transparent;
-    -fx-text-fill: #cbd5e1;
-    text-fill: #cbd5e1;
+    -fx-text-fill: #eff6ff;
+    text-fill: #f3f8ff;
     -fx-font-size: 14px;
     font-size: 14px;
     -fx-padding: 11 16;
@@ -222,15 +222,15 @@
     font-size: 30px;
     -fx-font-weight: bold;
     font-weight: bold;
-    -fx-text-fill: #74b47a;
-    text-fill: #2bd678;
+    -fx-text-fill: #03690d;
+    text-fill: #035226;
 }
 
 .stat-label {
     -fx-font-size: 13px;
     font-size: 13px;
-    -fx-text-fill: #86f0b2;
-    text-fill: #0b914e;
+    -fx-text-fill: #035023;
+    text-fill: #002513;
 }
 
 /* ---------- Buttons ---------- */
@@ -322,8 +322,8 @@
     font-size: 13px;
     -fx-font-weight: 600;
     font-weight: 600;
-    -fx-text-fill: #374151;
-    text-fill: #374151;
+    -fx-text-fill: #efdff7;
+    text-fill: #eaeff7;
 }
 
 .text-field, .combo-box, .date-picker {
@@ -525,8 +525,8 @@
 .hero-subtitle {
     -fx-font-size: 15px;
     font-size: 15px;
-    -fx-text-fill: #64748b;
-    text-fill: #64748b;
+    -fx-text-fill: #ebf4ff;
+    text-fill: #fbffff;
     -fx-padding: 6 0 0 0;
     padding: 6 0 0 0;
     -fx-wrap-text: true;
