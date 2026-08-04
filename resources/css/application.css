@@ -23,7 +23,7 @@
     -fx-pref-width: 260px;
     pref-width: 260px;
     -fx-background-color: linear-gradient(to bottom, #0f2b4d, #0a1f38);
-    background-color: #0f2b4d;
+    background-color: #0981c7;
     -fx-padding: 24 18 24 18;
     padding: 24 18 24 18;
     -fx-spacing: 6;
@@ -53,8 +53,8 @@
 }
 
 .subtitle {
-    -fx-text-fill: #8aaec7;
-    text-fill: #8aaec7;
+    -fx-text-fill: #c1e0f7;
+    text-fill: #cedde7;
     -fx-font-size: 13px;
     font-size: 13px;
     -fx-padding: 0 0 24 0;
