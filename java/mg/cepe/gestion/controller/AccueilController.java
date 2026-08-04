@@ -1,8 +1,5 @@
 package mg.cepe.gestion.controller;
 
-import java.net.URL;
-import java.util.ResourceBundle;
-
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -12,14 +9,13 @@ import mg.cepe.gestion.service.MatiereService;
 import mg.cepe.gestion.service.impl.EcoleServiceImpl;
 import mg.cepe.gestion.service.impl.EleveServiceImpl;
 import mg.cepe.gestion.service.impl.MatiereServiceImpl;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 public class AccueilController implements Initializable {
-    @FXML
-    private Label lblNbEleves;
-    @FXML
-    private Label lblNbEcoles;
-    @FXML
-    private Label lblNbMatieres;
+    @FXML private Label lblNbEleves;
+    @FXML private Label lblNbEcoles;
+    @FXML private Label lblNbMatieres;
 
     private final EleveService eleveService = new EleveServiceImpl();
     private final EcoleService ecoleService = new EcoleServiceImpl();

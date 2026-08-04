@@ -5,31 +5,24 @@
 <VBox spacing="18.0" styleClass="content" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mg.cepe.gestion.controller.EleveController">
    <padding><Insets top="28.0" right="36.0" bottom="28.0" left="36.0"/></padding>
 
-   <!-- Header -->
    <VBox spacing="4.0" styleClass="page-header">
       <Label text="Gestion des Élèves" styleClass="page-title"/>
       <Label text="Inscrivez, modifiez ou supprimez un élève. Recherchez par nom ou prénom, et consultez ses notes directement depuis la liste." styleClass="page-description" wrapText="true"/>
    </VBox>
 
-   <!-- Formulaire -->
    <GridPane hgap="14.0" vgap="12.0" styleClass="form-grid">
       <Label text="Numéro :" styleClass="form-label" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
       <TextField fx:id="txtNumEleve" promptText="ELV001" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
-
       <Label text="École :" styleClass="form-label" GridPane.rowIndex="0" GridPane.columnIndex="2"/>
       <ComboBox fx:id="cbEcole" promptText="Choisir une école" GridPane.rowIndex="0" GridPane.columnIndex="3"/>
-
       <Label text="Nom :" styleClass="form-label" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
       <TextField fx:id="txtNom" promptText="RAKOTO" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
-
       <Label text="Prénom :" styleClass="form-label" GridPane.rowIndex="1" GridPane.columnIndex="2"/>
       <TextField fx:id="txtPrenom" promptText="Bernard" GridPane.rowIndex="1" GridPane.columnIndex="3"/>
-
       <Label text="Date naissance :" styleClass="form-label" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
       <DatePicker fx:id="dpNaissance" promptText="jj/mm/aaaa" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
    </GridPane>
 
-   <!-- Boutons CRUD -->
    <HBox spacing="10.0">
       <Button text="Ajouter" onAction="#handleAjouter" styleClass="btn, btn-primary"/>
       <Button text="Modifier" onAction="#handleModifier" styleClass="btn, btn-warning"/>
@@ -37,14 +30,12 @@
       <Button text="Réinitialiser" onAction="#handleClear" styleClass="btn, btn-secondary"/>
    </HBox>
 
-   <!-- Recherche intégrée -->
    <HBox spacing="10.0" alignment="CENTER_LEFT">
       <TextField fx:id="txtRecherche" promptText="🔍 Rechercher par nom ou prénom..." styleClass="search-box" HBox.hgrow="ALWAYS"/>
       <Button text="Rechercher" onAction="#handleRechercher" styleClass="btn, btn-primary"/>
       <Button text="Tout afficher" onAction="#handleResetRecherche" styleClass="btn, btn-secondary"/>
    </HBox>
 
-   <!-- Table -->
    <TableView fx:id="tableEleves" VBox.vgrow="ALWAYS">
       <columns>
          <TableColumn fx:id="colNum" text="Numéro" prefWidth="90"/>

@@ -1,70 +1,41 @@
 package mg.cepe.gestion.controller;
 
-import java.net.URL;
-import java.util.ResourceBundle;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import mg.cepe.gestion.model.ResultatEleve;
 import mg.cepe.gestion.service.DeliberationService;
 import mg.cepe.gestion.service.impl.DeliberationServiceImpl;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 public class ClassementController implements Initializable {
-    @FXML
-    private TextField txtAnnee;
-    @FXML
-    private TableView<ResultatEleve> tableClassement;
-    @FXML
-    private TableColumn<ResultatEleve, Number> colRang;
-    @FXML
-    private TableColumn<ResultatEleve, String> colNom, colPrenom, colEcole;
-    @FXML
-    private TableColumn<ResultatEleve, Number> colMoyenne;
+    @FXML private TextField txtAnnee;
+    @FXML private TableView<ResultatEleve> tableClassement;
+    @FXML private TableColumn<ResultatEleve,Number> colRang;
+    @FXML private TableColumn<ResultatEleve,String> colNom, colPrenom, colEcole;
+    @FXML private TableColumn<ResultatEleve,Number> colMoyenne;
     private final DeliberationService service = new DeliberationServiceImpl();
     private final ObservableList<ResultatEleve> data = FXCollections.observableArrayList();
-
     private static final String REGEX_ANNEE = "^[0-9]{4}-[0-9]{4}$";
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        colRang.setCellValueFactory(c -> new javafx.beans.property.SimpleIntegerProperty(
-                tableClassement.getItems().indexOf(c.getValue()) + 1));
+    @Override public void initialize(URL location, ResourceBundle resources) {
+        colRang.setCellValueFactory(c -> new javafx.beans.property.SimpleIntegerProperty(tableClassement.getItems().indexOf(c.getValue()) + 1));
         colNom.setCellValueFactory(new PropertyValueFactory<>("nom"));
         colPrenom.setCellValueFactory(new PropertyValueFactory<>("prenom"));
         colEcole.setCellValueFactory(new PropertyValueFactory<>("nomEcole"));
         colMoyenne.setCellValueFactory(new PropertyValueFactory<>("moyenne"));
         tableClassement.setItems(data);
     }
-
-    @FXML
-    public void handleClassement() {
-        if (!validerAnnee())
-            return;
-        data.setAll(service.classementParMerite(txtAnnee.getText().trim()));
-    }
-
+    @FXML private void handleClassement() { if (validerAnnee()) data.setAll(service.classementParMerite(txtAnnee.getText().trim())); }
     private boolean validerAnnee() {
         String annee = txtAnnee.getText().trim();
-        if (annee.isEmpty()) {
-            alert(Alert.AlertType.WARNING, "Veuillez saisir une année scolaire.");
-            return false;
-        }
-        if (!annee.matches(REGEX_ANNEE)) {
-            alert(Alert.AlertType.WARNING, "Format invalide. Utilisez : YYYY-YYYY (ex: 2022-2023)");
-            return false;
-        }
+        if (annee.isEmpty()) { alert(Alert.AlertType.WARNING, "Saisissez une année scolaire."); return false; }
+        if (!annee.matches(REGEX_ANNEE)) { alert(Alert.AlertType.WARNING, "Format invalide (YYYY-YYYY)."); return false; }
         return true;
     }
-
-    private void alert(Alert.AlertType type, String msg) {
-        new Alert(type, msg, ButtonType.OK).showAndWait();
-    }
+    private void alert(Alert.AlertType type, String msg) { new Alert(type, msg, ButtonType.OK).showAndWait(); }
 }

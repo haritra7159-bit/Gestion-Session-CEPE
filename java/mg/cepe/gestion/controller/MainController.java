@@ -1,21 +1,18 @@
 package mg.cepe.gestion.controller;
 
-import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
-
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
+import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 public class MainController implements Initializable {
-    @FXML
-    private BorderPane mainContainer;
-    @FXML
-    private Button btnAccueil, btnEcoles, btnEleves, btnMatieres, btnDeliberation, btnClassement;
+    @FXML private BorderPane mainContainer;
+    @FXML private Button btnAccueil, btnEcoles, btnEleves, btnMatieres, btnDeliberation, btnClassement;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -25,8 +22,6 @@ public class MainController implements Initializable {
         btnMatieres.setOnAction(e -> loadView("/fxml/matiere-view.fxml"));
         btnDeliberation.setOnAction(e -> loadView("/fxml/deliberation-view.fxml"));
         btnClassement.setOnAction(e -> loadView("/fxml/classement-view.fxml"));
-
-        // Charger l'accueil par défaut
         loadView("/fxml/accueil-view.fxml");
     }
 
@@ -35,6 +30,7 @@ public class MainController implements Initializable {
             Node view = FXMLLoader.load(getClass().getResource(fxmlPath));
             mainContainer.setCenter(view);
         } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }

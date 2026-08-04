@@ -2,14 +2,27 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.text.Font?>
-<VBox spacing="15.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mg.cepe.gestion.controller.ClassementController">
-   <padding><Insets top="20" right="30" bottom="20" left="30"/></padding>
-   <Label text="Classement par ordre de mérite" styleClass="page-title"><font><Font size="24.0"/></font></Label>
-   <HBox spacing="10" alignment="CENTER_LEFT">
-      <Label text="Année scolaire :"/><TextField fx:id="txtAnnee" promptText="2022-2023" text="2022-2023"/><Button text="Afficher le classement" onAction="#handleClassement"/>
+<VBox spacing="18.0" styleClass="content" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mg.cepe.gestion.controller.ClassementController">
+   <padding><Insets top="28.0" right="36.0" bottom="28.0" left="36.0"/></padding>
+
+   <VBox spacing="4.0" styleClass="page-header">
+      <Label text="Classement" styleClass="page-title"/>
+      <Label text="Obtenez le classement par mérite des élèves pour une année scolaire donnée." styleClass="page-description" wrapText="true"/>
+   </VBox>
+
+   <HBox spacing="10.0" alignment="CENTER_LEFT">
+      <Label text="Année scolaire :" styleClass="form-label"/>
+      <TextField fx:id="txtAnnee" promptText="2022-2023" styleClass="search-box" prefWidth="150"/>
+      <Button text="Générer classement" onAction="#handleClassement" styleClass="btn, btn-primary"/>
    </HBox>
+
    <TableView fx:id="tableClassement" VBox.vgrow="ALWAYS">
-      <columns><TableColumn fx:id="colRang" text="Rang" prefWidth="60"/><TableColumn fx:id="colNom" text="Nom" prefWidth="150"/><TableColumn fx:id="colPrenom" text="Prénom" prefWidth="150"/><TableColumn fx:id="colEcole" text="École" prefWidth="200"/><TableColumn fx:id="colMoyenne" text="Moyenne" prefWidth="100"/></columns>
+      <columns>
+         <TableColumn fx:id="colRang" text="Rang" prefWidth="70"/>
+         <TableColumn fx:id="colNom" text="Nom" prefWidth="150"/>
+         <TableColumn fx:id="colPrenom" text="Prénom" prefWidth="150"/>
+         <TableColumn fx:id="colEcole" text="École" prefWidth="250"/>
+         <TableColumn fx:id="colMoyenne" text="Moyenne" prefWidth="100"/>
+      </columns>
    </TableView>
 </VBox>

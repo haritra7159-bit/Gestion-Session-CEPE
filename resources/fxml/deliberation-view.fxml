@@ -2,15 +2,31 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.text.Font?>
-<VBox spacing="15.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mg.cepe.gestion.controller.DeliberationController">
-   <padding><Insets top="20" right="30" bottom="20" left="30"/></padding>
-   <Label text="Délibération" styleClass="page-title"><font><Font size="24.0"/></font></Label>
-   <HBox spacing="10" alignment="CENTER_LEFT">
-      <Label text="Année scolaire :"/><TextField fx:id="txtAnnee" promptText="2022-2023" text="2022-2023"/><Button text="Lancer la délibération" onAction="#handleDeliberer"/>
+<VBox spacing="18.0" styleClass="content" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mg.cepe.gestion.controller.DeliberationController">
+   <padding><Insets top="28.0" right="36.0" bottom="28.0" left="36.0"/></padding>
+
+   <VBox spacing="4.0" styleClass="page-header">
+      <Label text="Délibération" styleClass="page-title"/>
+      <Label text="Calculez les moyennes pondérées et obtenez les décisions de passage pour une année scolaire." styleClass="page-description" wrapText="true"/>
+   </VBox>
+
+   <HBox spacing="10.0" alignment="CENTER_LEFT">
+      <Label text="Année scolaire :" styleClass="form-label"/>
+      <TextField fx:id="txtAnnee" promptText="2022-2023" styleClass="search-box" prefWidth="150"/>
+      <Button text="Tous" onAction="#handleDeliberer" styleClass="btn, btn-primary"/>
+      <Button text="Réussis" onAction="#handleReussis" styleClass="btn, btn-success"/>
+      <Button text="Échoués" onAction="#handleEchoues" styleClass="btn, btn-danger"/>
+      <Button text="Admis 6ème" onAction="#handleAdmis" styleClass="btn, btn-info"/>
    </HBox>
-   <HBox spacing="10"><Button text="Réussis" onAction="#handleReussis"/><Button text="Échoués" onAction="#handleEchoues"/><Button text="Admis en 6ème" onAction="#handleAdmis"/></HBox>
+
    <TableView fx:id="tableResultats" VBox.vgrow="ALWAYS">
-      <columns><TableColumn fx:id="colNum" text="N°" prefWidth="60"/><TableColumn fx:id="colNom" text="Nom" prefWidth="120"/><TableColumn fx:id="colPrenom" text="Prénom" prefWidth="120"/><TableColumn fx:id="colEcole" text="École" prefWidth="180"/><TableColumn fx:id="colMoyenne" text="Moyenne" prefWidth="80"/><TableColumn fx:id="colDecision" text="Décision" prefWidth="100"/></columns>
+      <columns>
+         <TableColumn fx:id="colNum" text="Numéro" prefWidth="90"/>
+         <TableColumn fx:id="colNom" text="Nom" prefWidth="140"/>
+         <TableColumn fx:id="colPrenom" text="Prénom" prefWidth="140"/>
+         <TableColumn fx:id="colEcole" text="École" prefWidth="200"/>
+         <TableColumn fx:id="colMoyenne" text="Moyenne" prefWidth="100"/>
+         <TableColumn fx:id="colDecision" text="Décision" prefWidth="150"/>
+      </columns>
    </TableView>
 </VBox>
