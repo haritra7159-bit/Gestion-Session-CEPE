@@ -1,10 +1,9 @@
 /* =========================================================
-   Design System – Gestion Session CEPE v2
-   Palette claire, contrastes renforcés, animations
+   Design System – Gestion Session CEPE v2.1
+   Palette claire, contrastes renforcés, transitions supportées
    ========================================================= */
 
-/* ---------- Tokens ---------- */
-/*
+/* ---------- Tokens ----------
    Primary    : #1e3a5f  |  Primary-light : #2d5a8a
    Accent     : #0d9488  |  Danger        : #dc2626
    Background : #f0f4f8  |  Surface       : #ffffff
@@ -20,7 +19,7 @@
     background-color: #f0f4f8;
 }
 
-/* ---------- Sidebar (plus clair) ---------- */
+/* ---------- Sidebar ---------- */
 .sidebar {
     -fx-pref-width: 260px;
     pref-width: 260px;
@@ -80,8 +79,6 @@
     cursor: hand;
     -fx-graphic-text-gap: 12;
     graphic-text-gap: 12;
-    -fx-transition: all 0.25s ease;
-    transition: all 0.25s ease;
 }
 
 .nav-button:hover {
@@ -89,8 +86,6 @@
     background-color: rgba(255,255,255,0.1);
     -fx-text-fill: #ffffff;
     text-fill: #ffffff;
-    -fx-translate-x: 4;
-    translate-x: 4;
 }
 
 .nav-button:pressed {
@@ -113,22 +108,12 @@
     border-radius: 0 10 10 0;
 }
 
-/* ---------- Content & Animation ---------- */
+/* ---------- Content ---------- */
 .content {
     -fx-background-color: #f0f4f8;
     background-color: #f0f4f8;
     -fx-padding: 0;
     padding: 0;
-    -fx-opacity: 0;
-    opacity: 0;
-    -fx-translate-x: 20;
-    translate-x: 20;
-    -fx-animation: fadeInSlide 0.4s ease forwards;
-    animation: fadeInSlide 0.4s ease forwards;
-}
-
-@keyframes fadeInSlide {
-    to { -fx-opacity: 1; -fx-translate-x: 0; }
 }
 
 .page-header {
@@ -140,8 +125,6 @@
     effect: dropshadow(gaussian, rgba(0,0,0,0.05), 8, 0, 0, 2);
     -fx-background-radius: 0 0 16 16;
     background-radius: 0 0 16 16;
-    -fx-margin: 0 0 16 0;
-    margin: 0 0 16 0;
 }
 
 .page-title {
@@ -178,8 +161,6 @@
     border-width: 1;
     -fx-border-radius: 14;
     border-radius: 14;
-    -fx-transition: all 0.3s ease;
-    transition: all 0.3s ease;
 }
 
 .card-hover:hover {
@@ -252,7 +233,7 @@
     text-fill: #94a3b8;
 }
 
-/* ---------- Buttons (cohérence CRUD) ---------- */
+/* ---------- Buttons ---------- */
 .btn {
     -fx-background-radius: 10;
     background-radius: 10;
@@ -266,8 +247,6 @@
     cursor: hand;
     -fx-text-fill: #ffffff;
     text-fill: #ffffff;
-    -fx-transition: all 0.2s ease;
-    transition: all 0.2s ease;
 }
 
 .btn:hover {
@@ -366,8 +345,6 @@
     text-fill: #1e293b;
     -fx-prompt-text-fill: #94a3b8;
     prompt-text-fill: #94a3b8;
-    -fx-transition: all 0.2s ease;
-    transition: all 0.2s ease;
 }
 
 .text-field:focused, .combo-box:focused, .date-picker:focused {
@@ -379,7 +356,7 @@
     background-color: #f8fafc;
 }
 
-/* ---------- TableView (bordures arrondies, profondeur) ---------- */
+/* ---------- TableView ---------- */
 .table-view {
     -fx-background-color: transparent;
     background-color: transparent;
@@ -428,8 +405,6 @@
     padding: 4 0;
     -fx-cell-size: 42;
     cell-size: 42;
-    -fx-transition: background-color 0.15s ease;
-    transition: background-color 0.15s ease;
 }
 
 .table-view .table-row-cell:odd {
@@ -564,17 +539,4 @@
     border-color: #e2e8f0;
     -fx-border-width: 1 0 0 0;
     border-width: 1 0 0 0;
-}
-
-/* ---------- Animation transitions ---------- */
-.fade-in {
-    -fx-opacity: 0;
-    opacity: 0;
-    -fx-animation: fadeIn 0.5s ease forwards;
-    animation: fadeIn 0.5s ease forwards;
-}
-
-@keyframes fadeIn {
-    from { -fx-opacity: 0; -fx-translate-y: 10; }
-    to   { -fx-opacity: 1; -fx-translate-y: 0; }
 }
