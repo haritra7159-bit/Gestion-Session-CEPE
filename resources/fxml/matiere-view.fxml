@@ -3,7 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <VBox spacing="18.0" styleClass="content" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mg.cepe.gestion.controller.MatiereController">
-   <padding><Insets top="28.0" right="36.0" bottom="28.0" left="36.0"/></padding>
+   <padding><Insets top="28.0" right="36.0" bottom="28.0" left="48.0"/></padding>
 
    <VBox spacing="4.0" styleClass="page-header">
       <Label text="Gestion des Matières" styleClass="page-title"/>
