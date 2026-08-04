@@ -35,7 +35,6 @@ public class MainController implements Initializable {
             Node view = FXMLLoader.load(getClass().getResource(fxmlPath));
             mainContainer.setCenter(view);
         } catch (IOException e) {
-            e.printStackTrace();
         }
     }
 }

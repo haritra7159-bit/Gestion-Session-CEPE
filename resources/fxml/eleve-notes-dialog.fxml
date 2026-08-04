@@ -2,7 +2,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<VBox spacing="16.0" styleClass="dialog-root" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mg.cepe.gestion.controller.EleveNotesDialogController">
+<VBox spacing="16.0" styleClass="dialog-root" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mg.cepe.gestion.controller.EleveNotesDialogController">
    <padding><Insets top="24.0" right="28.0" bottom="24.0" left="28.0"/></padding>
 
    <Label fx:id="lblTitre" text="Notes de l'élève" styleClass="dialog-title"/>

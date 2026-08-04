@@ -1,6 +1,7 @@
 package mg.cepe.gestion.controller;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -89,6 +90,7 @@ public class EleveNotesDialogController implements Initializable {
     }
 
     @FXML
+    @SuppressWarnings("unused")
     private void handleAjouter() {
         if (!valider())
             return;
@@ -100,6 +102,7 @@ public class EleveNotesDialogController implements Initializable {
     }
 
     @FXML
+    @SuppressWarnings("unused")
     private void handleModifier() {
         Note selected = tableNotes.getSelectionModel().getSelectedItem();
         if (selected == null) {
@@ -116,6 +119,7 @@ public class EleveNotesDialogController implements Initializable {
     }
 
     @FXML
+    @SuppressWarnings("unused")
     private void handleSupprimer() {
         Note selected = tableNotes.getSelectionModel().getSelectedItem();
         if (selected == null) {
@@ -128,6 +132,7 @@ public class EleveNotesDialogController implements Initializable {
     }
 
     @FXML
+    @SuppressWarnings("unused")
     private void handleClear() {
         txtAnnee.clear();
         txtNote.clear();
@@ -136,6 +141,7 @@ public class EleveNotesDialogController implements Initializable {
     }
 
     @FXML
+    @SuppressWarnings("unused")
     private void handleGenererReleve() {
         if (txtAnnee.getText().isBlank()) {
             alert(Alert.AlertType.WARNING, "Veuillez renseigner l'année scolaire.");
@@ -185,12 +191,13 @@ public class EleveNotesDialogController implements Initializable {
         try {
             RelevePdfGenerator.generer(chemin, annee, eleve, nomEcole, lignes, totalPondere, totalCoef, moyenne);
             alert(Alert.AlertType.INFORMATION, "PDF généré avec succès !\\n" + chemin);
-        } catch (Exception ex) {
+        } catch (IOException ex) {
             alert(Alert.AlertType.ERROR, "Erreur : " + ex.getMessage());
         }
     }
 
     @FXML
+    @SuppressWarnings("unused")
     private void handleFermer() {
         stage.close();
     }

@@ -1,6 +1,7 @@
 package mg.cepe.gestion.controller;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -127,6 +128,7 @@ public class EleveController implements Initializable {
     }
 
     @FXML
+    @SuppressWarnings("unused")
     private void handleAjouter() {
         if (!valider())
             return;
@@ -138,6 +140,7 @@ public class EleveController implements Initializable {
     }
 
     @FXML
+    @SuppressWarnings("unused")
     private void handleModifier() {
         if (!valider())
             return;
@@ -148,6 +151,7 @@ public class EleveController implements Initializable {
     }
 
     @FXML
+    @SuppressWarnings("unused")
     private void handleSupprimer() {
         eleveService.supprimer(txtNumEleve.getText());
         refresh();
@@ -155,6 +159,7 @@ public class EleveController implements Initializable {
     }
 
     @FXML
+    @SuppressWarnings("unused")
     private void handleClear() {
         txtNumEleve.clear();
         txtNom.clear();
@@ -165,6 +170,7 @@ public class EleveController implements Initializable {
     }
 
     @FXML
+    @SuppressWarnings("unused")
     private void handleRechercher() {
         String critere = txtRecherche.getText();
         if (critere == null || critere.isBlank()) {
@@ -175,6 +181,7 @@ public class EleveController implements Initializable {
     }
 
     @FXML
+    @SuppressWarnings("unused")
     private void handleResetRecherche() {
         txtRecherche.clear();
         refresh();
@@ -201,14 +208,13 @@ public class EleveController implements Initializable {
             EleveNotesDialogController controller = loader.getController();
             Stage stage = new Stage();
             stage.initModality(Modality.APPLICATION_MODAL);
-            stage.setTitle("Notes – " + eleve.getNomComplet());
+            stage.setTitle("Notes - " + eleve.getNomComplet());
             Scene scene = new Scene(root);
             scene.getStylesheets().add(getClass().getResource("/css/application.css").toExternalForm());
             stage.setScene(scene);
             controller.setEleve(eleve, stage);
             stage.showAndWait();
-        } catch (Exception ex) {
-            ex.printStackTrace();
+        } catch (IOException ex) {
         }
     }
 
@@ -264,7 +270,7 @@ public class EleveController implements Initializable {
         try {
             RelevePdfGenerator.generer(chemin, annee, eleve, nomEcole, lignes, totalPondere, totalCoef, moyenne);
             new Alert(Alert.AlertType.INFORMATION, "PDF généré avec succès !\n" + chemin, ButtonType.OK).showAndWait();
-        } catch (Exception ex) {
+        } catch (IOException ex) {
             new Alert(Alert.AlertType.ERROR, "Erreur : " + ex.getMessage(), ButtonType.OK).showAndWait();
         }
     }
