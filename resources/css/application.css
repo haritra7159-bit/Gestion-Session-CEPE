@@ -15,8 +15,8 @@
 .root-layout {
     -fx-font-family: "Segoe UI", "SF Pro Display", Arial, sans-serif;
     font-family: "Segoe UI", "SF Pro Display", Arial, sans-serif;
-    -fx-background-color: #f0f4f8;
-    background-color: #f0f4f8;
+    -fx-background-color: #82befa;
+    background-color: #8bb9e7;
 }
 
 /* ---------- Sidebar ---------- */
@@ -24,7 +24,7 @@
     -fx-pref-width: 260px;
     pref-width: 260px;
     -fx-background-color: linear-gradient(to bottom, #1e3a5f, #152a45);
-    background-color: #1e3a5f;
+    background-color: #096de0;
     -fx-padding: 24 18 24 18;
     padding: 24 18 24 18;
     -fx-spacing: 6;
@@ -129,7 +129,7 @@
 
 .page-title {
     -fx-text-fill: #1e3a5f;
-    text-fill: #1e3a5f;
+    text-fill: #0a0b0e;
     -fx-font-size: 26px;
     font-size: 26px;
     -fx-font-weight: bold;
@@ -222,15 +222,15 @@
     font-size: 30px;
     -fx-font-weight: bold;
     font-weight: bold;
-    -fx-text-fill: #ffffff;
-    text-fill: #ffffff;
+    -fx-text-fill: #74b47a;
+    text-fill: #2bd678;
 }
 
 .stat-label {
     -fx-font-size: 13px;
     font-size: 13px;
-    -fx-text-fill: #94a3b8;
-    text-fill: #94a3b8;
+    -fx-text-fill: #86f0b2;
+    text-fill: #0b914e;
 }
 
 /* ---------- Buttons ---------- */

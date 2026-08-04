@@ -1,35 +1,36 @@
 -- ============================================================
--- Données de démonstration CEPE - Version enrichie
--- 10 écoles, 25 élèves, 7 matières, ~189 notes, 2 années scolaires
--- Couvre tous les cas : admis sixième, réussis, échoués, frontières
+-- Donnees de demonstration CEPE - Version enrichie
+-- 10 ecoles, 25 eleves, 7 matieres, ~189 notes, 2 annees scolaires
 -- ============================================================
 
--- ---------- ÉCOLES ----------
+SET client_encoding TO 'UTF8';
+
+-- ---------- ECOLES ----------
 INSERT INTO ecole (numecole, design, adresse) VALUES
     ('ECO001', 'Saint Joseph Ouvrier', 'Antananarivo'),
-    ('ECO002', 'École Primaire Analakely', 'Antananarivo'),
-    ('ECO003', 'Lycée Collège Ampahibe', 'Antsirabe'),
-    ('ECO004', 'École Sainte Famille', 'Fianarantsoa'),
-    ('ECO005', 'Collège Saint Michel', 'Toamasina'),
-    ('ECO006', 'École Publique Andohalo', 'Antananarivo'),
-    ('ECO007', 'Institut Français de Madagascar', 'Antananarivo'),
-    ('ECO008', 'École Primaire Soavinandriana', 'Antsirabe'),
-    ('ECO009', 'Collège Saint Joseph', 'Fianarantsoa'),
-    ('ECO010', 'École Publique Analakely', 'Toamasina')
+    ('ECO002', 'Ecole Primaire Analakely', 'Antananarivo'),
+    ('ECO003', 'Lycee College Ampahibe', 'Antsirabe'),
+    ('ECO004', 'Ecole Sainte Famille', 'Fianarantsoa'),
+    ('ECO005', 'College Saint Michel', 'Toamasina'),
+    ('ECO006', 'Ecole Publique Andohalo', 'Antananarivo'),
+    ('ECO007', 'Institut Francais de Madagascar', 'Antananarivo'),
+    ('ECO008', 'Ecole Primaire Soavinandriana', 'Antsirabe'),
+    ('ECO009', 'College Saint Joseph', 'Fianarantsoa'),
+    ('ECO010', 'Ecole Publique Analakely', 'Toamasina')
 ON CONFLICT (numecole) DO NOTHING;
 
--- ---------- MATIÈRES ----------
+-- ---------- MATIERES ----------
 INSERT INTO matiere (nummat, designmat, coef) VALUES
     ('MAT001', 'Malagasy',   3),
     ('MAT002', 'Calcul',     1),
-    ('MAT003', 'Problème',   2),
+    ('MAT003', 'Probleme',   2),
     ('MAT004', 'Tantara',    1),
-    ('MAT005', 'Géographie', 1),
-    ('MAT006', 'Français',   1),
+    ('MAT005', 'Geographie', 1),
+    ('MAT006', 'Francais',   1),
     ('MAT007', 'SVT',        2)
 ON CONFLICT (nummat) DO NOTHING;
 
--- ---------- ÉLÈVES ----------
+-- ---------- ELEVES ----------
 INSERT INTO eleve (numeleve, numecole, nom, prenom, date_naissance) VALUES
     ('ELV001', 'ECO001', 'RAKOTO',       'Bernard',      DATE '2013-03-23'),
     ('ELV002', 'ECO001', 'RABEARISOA',    'Jean',         DATE '2013-05-14'),
@@ -60,7 +61,6 @@ ON CONFLICT (numeleve) DO NOTHING;
 
 -- ---------- NOTES 2022-2023 ----------
 INSERT INTO note (annee_scolaire, numeleve, nummat, note) VALUES
-    -- ELV001 : ~13.73 (admis sixième)
     ('2022-2023', 'ELV001', 'MAT001', 12.00),
     ('2022-2023', 'ELV001', 'MAT002', 18.00),
     ('2022-2023', 'ELV001', 'MAT003', 19.00),
@@ -68,7 +68,6 @@ INSERT INTO note (annee_scolaire, numeleve, nummat, note) VALUES
     ('2022-2023', 'ELV001', 'MAT005', 14.00),
     ('2022-2023', 'ELV001', 'MAT006', 15.00),
     ('2022-2023', 'ELV001', 'MAT007',  9.00),
-    -- ELV002 : ~8.45 (échoué)
     ('2022-2023', 'ELV002', 'MAT001',  8.00),
     ('2022-2023', 'ELV002', 'MAT002', 10.00),
     ('2022-2023', 'ELV002', 'MAT003',  7.00),
@@ -76,7 +75,6 @@ INSERT INTO note (annee_scolaire, numeleve, nummat, note) VALUES
     ('2022-2023', 'ELV002', 'MAT005',  8.00),
     ('2022-2023', 'ELV002', 'MAT006', 11.00),
     ('2022-2023', 'ELV002', 'MAT007',  7.00),
-    -- ELV003 : ~10.2 (réussi, pas sixième)
     ('2022-2023', 'ELV003', 'MAT001', 10.00),
     ('2022-2023', 'ELV003', 'MAT002', 12.00),
     ('2022-2023', 'ELV003', 'MAT003',  9.00),
@@ -84,7 +82,6 @@ INSERT INTO note (annee_scolaire, numeleve, nummat, note) VALUES
     ('2022-2023', 'ELV003', 'MAT005', 10.00),
     ('2022-2023', 'ELV003', 'MAT006', 10.50),
     ('2022-2023', 'ELV003', 'MAT007',  9.50),
-    -- ELV004 : ~12.1 (admis sixième)
     ('2022-2023', 'ELV004', 'MAT001', 13.00),
     ('2022-2023', 'ELV004', 'MAT002', 14.00),
     ('2022-2023', 'ELV004', 'MAT003', 12.00),
@@ -92,7 +89,6 @@ INSERT INTO note (annee_scolaire, numeleve, nummat, note) VALUES
     ('2022-2023', 'ELV004', 'MAT005', 10.00),
     ('2022-2023', 'ELV004', 'MAT006', 12.50),
     ('2022-2023', 'ELV004', 'MAT007', 11.00),
-    -- ELV005 : ~9.5 (échoué)
     ('2022-2023', 'ELV005', 'MAT001',  9.00),
     ('2022-2023', 'ELV005', 'MAT002', 10.00),
     ('2022-2023', 'ELV005', 'MAT003',  8.00),
@@ -100,7 +96,6 @@ INSERT INTO note (annee_scolaire, numeleve, nummat, note) VALUES
     ('2022-2023', 'ELV005', 'MAT005',  9.50),
     ('2022-2023', 'ELV005', 'MAT006', 10.00),
     ('2022-2023', 'ELV005', 'MAT007',  8.50),
-    -- ELV006 : ~14.5 (admis sixième)
     ('2022-2023', 'ELV006', 'MAT001', 16.00),
     ('2022-2023', 'ELV006', 'MAT002', 18.00),
     ('2022-2023', 'ELV006', 'MAT003', 17.00),
@@ -108,7 +103,6 @@ INSERT INTO note (annee_scolaire, numeleve, nummat, note) VALUES
     ('2022-2023', 'ELV006', 'MAT005', 14.00),
     ('2022-2023', 'ELV006', 'MAT006', 16.00),
     ('2022-2023', 'ELV006', 'MAT007', 13.00),
-    -- ELV007 : ~11.8 (admis sixième)
     ('2022-2023', 'ELV007', 'MAT001', 12.50),
     ('2022-2023', 'ELV007', 'MAT002', 13.00),
     ('2022-2023', 'ELV007', 'MAT003', 11.00),
@@ -116,7 +110,6 @@ INSERT INTO note (annee_scolaire, numeleve, nummat, note) VALUES
     ('2022-2023', 'ELV007', 'MAT005', 10.50),
     ('2022-2023', 'ELV007', 'MAT006', 11.50),
     ('2022-2023', 'ELV007', 'MAT007', 10.00),
-    -- ELV008 : ~7.2 (échoué)
     ('2022-2023', 'ELV008', 'MAT001',  5.00),
     ('2022-2023', 'ELV008', 'MAT002',  7.00),
     ('2022-2023', 'ELV008', 'MAT003',  6.00),
@@ -124,7 +117,6 @@ INSERT INTO note (annee_scolaire, numeleve, nummat, note) VALUES
     ('2022-2023', 'ELV008', 'MAT005',  7.50),
     ('2022-2023', 'ELV008', 'MAT006',  8.00),
     ('2022-2023', 'ELV008', 'MAT007',  6.50),
-    -- ELV009 : ~10.8 (réussi)
     ('2022-2023', 'ELV009', 'MAT001', 11.00),
     ('2022-2023', 'ELV009', 'MAT002', 12.00),
     ('2022-2023', 'ELV009', 'MAT003', 10.00),
@@ -132,7 +124,6 @@ INSERT INTO note (annee_scolaire, numeleve, nummat, note) VALUES
     ('2022-2023', 'ELV009', 'MAT005',  9.00),
     ('2022-2023', 'ELV009', 'MAT006', 10.50),
     ('2022-2023', 'ELV009', 'MAT007', 10.00),
-    -- ELV010 : ~13.0 (admis sixième)
     ('2022-2023', 'ELV010', 'MAT001', 14.00),
     ('2022-2023', 'ELV010', 'MAT002', 15.00),
     ('2022-2023', 'ELV010', 'MAT003', 13.00),
@@ -140,7 +131,6 @@ INSERT INTO note (annee_scolaire, numeleve, nummat, note) VALUES
     ('2022-2023', 'ELV010', 'MAT005', 11.00),
     ('2022-2023', 'ELV010', 'MAT006', 13.50),
     ('2022-2023', 'ELV010', 'MAT007', 12.00),
-    -- ELV011 : ~9.1 (échoué)
     ('2022-2023', 'ELV011', 'MAT001',  9.50),
     ('2022-2023', 'ELV011', 'MAT002', 10.00),
     ('2022-2023', 'ELV011', 'MAT003',  8.50),
@@ -148,7 +138,6 @@ INSERT INTO note (annee_scolaire, numeleve, nummat, note) VALUES
     ('2022-2023', 'ELV011', 'MAT005', 10.00),
     ('2022-2023', 'ELV011', 'MAT006',  9.50),
     ('2022-2023', 'ELV011', 'MAT007',  8.00),
-    -- ELV012 : ~12.5 (admis sixième)
     ('2022-2023', 'ELV012', 'MAT001', 13.50),
     ('2022-2023', 'ELV012', 'MAT002', 14.00),
     ('2022-2023', 'ELV012', 'MAT003', 12.50),
@@ -156,7 +145,6 @@ INSERT INTO note (annee_scolaire, numeleve, nummat, note) VALUES
     ('2022-2023', 'ELV012', 'MAT005', 12.00),
     ('2022-2023', 'ELV012', 'MAT006', 13.00),
     ('2022-2023', 'ELV012', 'MAT007', 11.50),
-    -- ELV013 : ~7.3 (échoué)
     ('2022-2023', 'ELV013', 'MAT001',  7.00),
     ('2022-2023', 'ELV013', 'MAT002',  8.00),
     ('2022-2023', 'ELV013', 'MAT003',  6.50),
@@ -164,7 +152,6 @@ INSERT INTO note (annee_scolaire, numeleve, nummat, note) VALUES
     ('2022-2023', 'ELV013', 'MAT005',  7.00),
     ('2022-2023', 'ELV013', 'MAT006',  8.00),
     ('2022-2023', 'ELV013', 'MAT007',  6.00),
-    -- ELV014 : ~10.1 (réussi frontière)
     ('2022-2023', 'ELV014', 'MAT001', 10.00),
     ('2022-2023', 'ELV014', 'MAT002', 11.00),
     ('2022-2023', 'ELV014', 'MAT003',  9.50),
@@ -172,7 +159,6 @@ INSERT INTO note (annee_scolaire, numeleve, nummat, note) VALUES
     ('2022-2023', 'ELV014', 'MAT005',  9.00),
     ('2022-2023', 'ELV014', 'MAT006', 10.00),
     ('2022-2023', 'ELV014', 'MAT007',  9.50),
-    -- ELV015 : ~16.2 (admis sixième)
     ('2022-2023', 'ELV015', 'MAT001', 17.00),
     ('2022-2023', 'ELV015', 'MAT002', 18.00),
     ('2022-2023', 'ELV015', 'MAT003', 16.00),
@@ -180,7 +166,6 @@ INSERT INTO note (annee_scolaire, numeleve, nummat, note) VALUES
     ('2022-2023', 'ELV015', 'MAT005', 14.00),
     ('2022-2023', 'ELV015', 'MAT006', 16.50),
     ('2022-2023', 'ELV015', 'MAT007', 15.00),
-    -- ELV016 : ~11.0 (réussi)
     ('2022-2023', 'ELV016', 'MAT001', 11.00),
     ('2022-2023', 'ELV016', 'MAT002', 12.00),
     ('2022-2023', 'ELV016', 'MAT003', 10.50),
@@ -188,7 +173,6 @@ INSERT INTO note (annee_scolaire, numeleve, nummat, note) VALUES
     ('2022-2023', 'ELV016', 'MAT005', 10.00),
     ('2022-2023', 'ELV016', 'MAT006', 11.50),
     ('2022-2023', 'ELV016', 'MAT007', 10.50),
-    -- ELV017 : ~9.0 (échoué frontière)
     ('2022-2023', 'ELV017', 'MAT001',  9.00),
     ('2022-2023', 'ELV017', 'MAT002',  9.50),
     ('2022-2023', 'ELV017', 'MAT003',  8.00),
@@ -196,7 +180,6 @@ INSERT INTO note (annee_scolaire, numeleve, nummat, note) VALUES
     ('2022-2023', 'ELV017', 'MAT005',  9.00),
     ('2022-2023', 'ELV017', 'MAT006',  9.50),
     ('2022-2023', 'ELV017', 'MAT007',  8.50),
-    -- ELV018 : ~13.6 (admis sixième)
     ('2022-2023', 'ELV018', 'MAT001', 14.00),
     ('2022-2023', 'ELV018', 'MAT002', 15.00),
     ('2022-2023', 'ELV018', 'MAT003', 13.00),
@@ -204,7 +187,6 @@ INSERT INTO note (annee_scolaire, numeleve, nummat, note) VALUES
     ('2022-2023', 'ELV018', 'MAT005', 13.00),
     ('2022-2023', 'ELV018', 'MAT006', 14.00),
     ('2022-2023', 'ELV018', 'MAT007', 12.50),
-    -- ELV019 : ~9.1 (échoué)
     ('2022-2023', 'ELV019', 'MAT001',  9.00),
     ('2022-2023', 'ELV019', 'MAT002', 10.00),
     ('2022-2023', 'ELV019', 'MAT003',  8.50),
@@ -212,7 +194,6 @@ INSERT INTO note (annee_scolaire, numeleve, nummat, note) VALUES
     ('2022-2023', 'ELV019', 'MAT005',  8.00),
     ('2022-2023', 'ELV019', 'MAT006',  9.00),
     ('2022-2023', 'ELV019', 'MAT007',  8.50),
-    -- ELV020 : ~12.7 (admis sixième)
     ('2022-2023', 'ELV020', 'MAT001', 13.00),
     ('2022-2023', 'ELV020', 'MAT002', 14.00),
     ('2022-2023', 'ELV020', 'MAT003', 12.00),
@@ -220,7 +201,6 @@ INSERT INTO note (annee_scolaire, numeleve, nummat, note) VALUES
     ('2022-2023', 'ELV020', 'MAT005', 12.00),
     ('2022-2023', 'ELV020', 'MAT006', 13.00),
     ('2022-2023', 'ELV020', 'MAT007', 11.50),
-    -- ELV021 : ~17.2 (admis sixième)
     ('2022-2023', 'ELV021', 'MAT001', 18.00),
     ('2022-2023', 'ELV021', 'MAT002', 19.00),
     ('2022-2023', 'ELV021', 'MAT003', 17.00),
@@ -228,7 +208,6 @@ INSERT INTO note (annee_scolaire, numeleve, nummat, note) VALUES
     ('2022-2023', 'ELV021', 'MAT005', 15.00),
     ('2022-2023', 'ELV021', 'MAT006', 17.50),
     ('2022-2023', 'ELV021', 'MAT007', 16.00),
-    -- ELV022 : ~11.0 (réussi)
     ('2022-2023', 'ELV022', 'MAT001', 11.50),
     ('2022-2023', 'ELV022', 'MAT002', 12.00),
     ('2022-2023', 'ELV022', 'MAT003', 10.00),
@@ -236,7 +215,6 @@ INSERT INTO note (annee_scolaire, numeleve, nummat, note) VALUES
     ('2022-2023', 'ELV022', 'MAT005', 10.50),
     ('2022-2023', 'ELV022', 'MAT006', 11.00),
     ('2022-2023', 'ELV022', 'MAT007', 10.50),
-    -- ELV023 : ~6.6 (échoué)
     ('2022-2023', 'ELV023', 'MAT001',  6.00),
     ('2022-2023', 'ELV023', 'MAT002',  7.00),
     ('2022-2023', 'ELV023', 'MAT003',  5.50),
@@ -244,7 +222,6 @@ INSERT INTO note (annee_scolaire, numeleve, nummat, note) VALUES
     ('2022-2023', 'ELV023', 'MAT005',  6.50),
     ('2022-2023', 'ELV023', 'MAT006',  7.50),
     ('2022-2023', 'ELV023', 'MAT007',  5.00),
-    -- ELV024 : ~14.4 (admis sixième)
     ('2022-2023', 'ELV024', 'MAT001', 15.00),
     ('2022-2023', 'ELV024', 'MAT002', 16.00),
     ('2022-2023', 'ELV024', 'MAT003', 14.00),
@@ -252,7 +229,6 @@ INSERT INTO note (annee_scolaire, numeleve, nummat, note) VALUES
     ('2022-2023', 'ELV024', 'MAT005', 14.00),
     ('2022-2023', 'ELV024', 'MAT006', 15.00),
     ('2022-2023', 'ELV024', 'MAT007', 13.50),
-    -- ELV025 : ~11.3 (admis sixième)
     ('2022-2023', 'ELV025', 'MAT001', 12.00),
     ('2022-2023', 'ELV025', 'MAT002', 13.00),
     ('2022-2023', 'ELV025', 'MAT003', 11.00),
@@ -262,7 +238,7 @@ INSERT INTO note (annee_scolaire, numeleve, nummat, note) VALUES
     ('2022-2023', 'ELV025', 'MAT007', 10.50)
 ON CONFLICT DO NOTHING;
 
--- ---------- NOTES 2023-2024 (multi-années) ----------
+-- ---------- NOTES 2023-2024 ----------
 INSERT INTO note (annee_scolaire, numeleve, nummat, note) VALUES
     ('2023-2024', 'ELV001', 'MAT001', 14.00),
     ('2023-2024', 'ELV001', 'MAT002', 16.00),
