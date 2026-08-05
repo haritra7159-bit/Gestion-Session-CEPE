@@ -53,7 +53,7 @@ mvn clean javafx:run
 | 📄 **Relevés PDF**  | Génération de relevés de notes formatés en PDF              |
 
 📁 Organisation
-plain
+plan
 Gestion-Session-CEPE/
 ├── java/mg/cepe/gestion/
 │   ├── application/      # Point d'entrée JavaFX
@@ -90,3 +90,4 @@ mvn clean test	Exécuter les tests
 mvn clean package	Générer le JAR
 📝 Licence
 Projet universitaire – L2GB Fianarantsoa
+Contributeurs : Fy Haritra, Rianala
