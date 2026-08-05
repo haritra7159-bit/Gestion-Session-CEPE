@@ -90,4 +90,4 @@ mvn clean test	Exécuter les tests
 mvn clean package	Générer le JAR
 📝 Licence
 Projet universitaire – L2GB Fianarantsoa
-Contributeurs : Fy Haritra, Rianala
+Contributeurs : Fy Haritra, Ria
