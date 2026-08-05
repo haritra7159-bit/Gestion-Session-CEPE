@@ -12,7 +12,7 @@
 
    <GridPane hgap="14.0" vgap="12.0" styleClass="form-grid">
       <Label text="Numéro :" styleClass="form-label" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
-      <TextField fx:id="txtNumEcole" promptText="ECO001" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+      <TextField fx:id="txtNumEcole" promptText="Format valide ECO-XXXX" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
       <Label text="Désignation :" styleClass="form-label" GridPane.rowIndex="0" GridPane.columnIndex="2"/>
       <TextField fx:id="txtDesign" promptText="Nom de l'école" GridPane.rowIndex="0" GridPane.columnIndex="3"/>
       <Label text="Adresse :" styleClass="form-label" GridPane.rowIndex="1" GridPane.columnIndex="0"/>

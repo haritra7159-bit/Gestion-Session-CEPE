@@ -7,12 +7,12 @@
 
    <VBox spacing="4.0">
       <Label text="Classement" styleClass="page-title"/>
-      <Label text="Obtenez le classement par mérite des élèves pour une année scolaire donnée." styleClass="page-description" wrapText="true"/>
+      <Label text="Obtenez le classement par ordre de mérite des élèves pour une année scolaire donnée." styleClass="page-description" wrapText="true"/>
    </VBox>
 
    <HBox spacing="10.0" alignment="CENTER_LEFT">
       <Label text="Année scolaire :" styleClass="form-label"/>
-      <TextField fx:id="txtAnnee" promptText="2022-2023" styleClass="search-box" prefWidth="150"/>
+      <TextField fx:id="txtAnnee" promptText="AAAA-AAAA" styleClass="search-box" prefWidth="150"/>
       <Button text="Générer classement" onAction="#handleClassement" styleClass="btn, btn-primary"/>
    </HBox>
 

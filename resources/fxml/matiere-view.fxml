@@ -11,10 +11,10 @@
    </VBox>
 
    <GridPane hgap="14.0" vgap="12.0" styleClass="form-grid">
-      <Label text="Code :" styleClass="form-label" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
-      <TextField fx:id="txtNumMat" promptText="MAT001" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+      <Label text="Numéro :" styleClass="form-label" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+      <TextField fx:id="txtNumMat" promptText="Format valide MAT-XXXX" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
       <Label text="Désignation :" styleClass="form-label" GridPane.rowIndex="0" GridPane.columnIndex="2"/>
-      <TextField fx:id="txtDesignMat" promptText="Malagasy" GridPane.rowIndex="0" GridPane.columnIndex="3"/>
+      <TextField fx:id="txtDesignMat" promptText="Format valide" GridPane.rowIndex="0" GridPane.columnIndex="3"/>
       <Label text="Coefficient :" styleClass="form-label" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
       <Spinner fx:id="spCoef" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
    </GridPane>

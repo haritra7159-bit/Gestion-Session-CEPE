@@ -342,7 +342,7 @@
     color: #2C3E50;
 }
 
-.text-field, .combo-box, .date-picker {
+.text-field, .combo-box, .date-picker, .spinner {
     -fx-background-color: #ffffff;
     background-color: #ffffff;
     -fx-background-radius: 10;
@@ -361,7 +361,7 @@
     -fx-prompt-text-fill: #8ab4c7;
 }
 
-.text-field:focused, .combo-box:focused, .date-picker:focused {
+.text-field:focused, .combo-box:focused, .date-picker:focused, .spinner:focused {
     -fx-border-color: #4B9CD3;
     border-color: #4B9CD3;
     -fx-effect: dropshadow(gaussian, rgba(75,156,211,0.15), 8, 0, 0, 0);

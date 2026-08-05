@@ -12,7 +12,7 @@
 
    <GridPane hgap="14.0" vgap="12.0" styleClass="form-grid">
       <Label text="Année scolaire :" styleClass="form-label" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
-      <TextField fx:id="txtAnnee" promptText="2022-2023" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+      <TextField fx:id="txtAnnee" promptText="AAAA-AAAA" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
       <Label text="Élève :" styleClass="form-label" GridPane.rowIndex="0" GridPane.columnIndex="2"/>
       <ComboBox fx:id="cbEleve" promptText="Choisir un élève" GridPane.rowIndex="0" GridPane.columnIndex="3"/>
    </GridPane>
