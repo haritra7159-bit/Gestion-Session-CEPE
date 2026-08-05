@@ -3,9 +3,9 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <VBox spacing="18.0" styleClass="content" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mg.cepe.gestion.controller.MatiereController">
-   <padding><Insets top="28.0" right="36.0" bottom="28.0" left="48.0"/></padding>
+   <padding><Insets top="32.0" right="52.0" bottom="32.0" left="52.0"/></padding>
 
-   <VBox spacing="4.0" styleClass="page-header">
+   <VBox spacing="4.0">
       <Label text="Gestion des Matières" styleClass="page-title"/>
       <Label text="Définissez les matières et leurs coefficients pour le calcul des moyennes pondérées." styleClass="page-description" wrapText="true"/>
    </VBox>

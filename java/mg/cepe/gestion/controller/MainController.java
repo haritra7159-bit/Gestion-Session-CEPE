@@ -3,6 +3,7 @@ package mg.cepe.gestion.controller;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,12 +14,32 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 
 public class MainController implements Initializable {
+    private static final Logger LOGGER = Logger.getLogger(MainController.class.getName());
+
     @FXML
-    private BorderPane mainContainer;
+    @SuppressWarnings("unused")
+    private BorderPane mainContainer; // injected via FXML
+
     @FXML
     private StackPane contentContainer;
+
     @FXML
-    private Button btnAccueil, btnEcoles, btnEleves, btnMatieres, btnDeliberation, btnClassement;
+    private Button btnAccueil;
+
+    @FXML
+    private Button btnEcoles;
+
+    @FXML
+    private Button btnEleves;
+
+    @FXML
+    private Button btnMatieres;
+
+    @FXML
+    private Button btnDeliberation;
+
+    @FXML
+    private Button btnClassement;
 
     private Button currentActiveBtn;
 
@@ -68,7 +89,7 @@ public class MainController implements Initializable {
             Node view = FXMLLoader.load(getClass().getResource(fxmlPath));
             contentContainer.getChildren().setAll(view);
         } catch (IOException e) {
-            e.printStackTrace();
+            LOGGER.log(java.util.logging.Level.SEVERE, "Failed to load view: " + fxmlPath, e);
         }
     }
 }

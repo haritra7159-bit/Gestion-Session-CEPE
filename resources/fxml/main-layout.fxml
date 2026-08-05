@@ -7,12 +7,12 @@
    <padding><Insets top="16.0" right="16.0" bottom="16.0" left="16.0"/></padding>
    <center>
       <HBox spacing="16.0">
-         <!-- Sidebar -->
-         <VBox styleClass="sidebar" spacing="6.0" HBox.hgrow="NEVER">
+         <!-- Sidebar : min/pref/max width identiques = impossible à compresser -->
+         <VBox styleClass="sidebar" spacing="6.0" minWidth="260" prefWidth="260" maxWidth="260">
             <padding><Insets bottom="24.0" left="18.0" right="18.0" top="24.0"/></padding>
-            <Label styleClass="brand" text="Gestion du " />
-            <Label styleClass="brand-accent" text="CEPE" />
-            <Label styleClass="subtitle" text="Session &amp; Résultats" />
+            <Label styleClass="brand" text="Gestion du" maxWidth="Infinity" />
+            <Label styleClass="brand-accent" text="CEPE" maxWidth="Infinity" />
+            <Label styleClass="subtitle" text="Session &amp; Résultats" maxWidth="Infinity" wrapText="true" />
             <Button fx:id="btnAccueil" styleClass="nav-button" text="🏠 Accueil" maxWidth="Infinity" />
             <Button fx:id="btnEcoles" styleClass="nav-button" text="🏫 Écoles" maxWidth="Infinity" />
             <Button fx:id="btnEleves" styleClass="nav-button" text="🎓 Élèves" maxWidth="Infinity" />
