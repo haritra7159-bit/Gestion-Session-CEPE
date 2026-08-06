@@ -104,5 +104,4 @@ PostgreSQL
 ### Licence
 
 Projet universitaire – L2GB Fianarantsoa
-
 Contributeurs : Fy Haritra, Rianala
