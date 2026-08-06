@@ -7,7 +7,7 @@ Application de bureau JavaFX pour la gestion complète d'une session du **Certif
 ## 🛠 Technologies
 
 | Couche | Technologie |
-|--------|-------------|
+| ------ | ----------- |
 | Langage | Java 25 |
 | UI | JavaFX 25 + FXML + CSS |
 | Base de données | PostgreSQL 16 |
@@ -20,11 +20,13 @@ Application de bureau JavaFX pour la gestion complète d'une session du **Certif
 ---
 
 ## ⚡ Prérequis
+
 - Java 25
 - Maven 3.9+
 - PostgreSQL 16+
 
 ---
+
 ## 🚀 Installation
 
 ```bash
@@ -41,19 +43,23 @@ psql -U postgres -d cepe -f database/migration/insert_demo_data.sql
 
 # 4. Compiler et lancer
 mvn clean javafx:run
+```
 
-| Module              | Description                                                 |
-| ------------------- | ----------------------------------------------------------- |
-| 🏫 **Écoles**       | Gestion des écoles participantes                            |
-| 🎓 **Élèves**       | Inscription, modification, suppression + recherche intégrée |
-| 📝 **Notes**        | Gestion des notes par élève et par matière (dialog intégré) |
-| 📚 **Matières**     | Définition des matières et coefficients                     |
-| ⚖️ **Délibération** | Calcul automatique des moyennes pondérées et décisions      |
-| 🏆 **Classement**   | Classement par mérite des admis et des échoués              |
-| 📄 **Relevés PDF**  | Génération de relevés de notes formatés en PDF              |
+### Modules
 
-📁 Organisation
-plan
+| Module | Description |
+| ------ | ----------- |
+| 🏫 **Écoles** | Gestion des écoles participantes |
+| 🎓 **Élèves** | Inscription, modification, suppression + recherche intégrée |
+| 📝 **Notes** | Gestion des notes par élève et par matière (dialog intégré) |
+| 📚 **Matières** | Définition des matières et coefficients |
+| ⚖️ **Délibération** | Calcul automatique des moyennes pondérées et décisions |
+| 🏆 **Classement** | Classement par mérite des admis et des échoués |
+| 📄 **Relevés PDF** | Génération de relevés de notes formatés en PDF |
+
+### Organisation
+
+```text
 Gestion-Session-CEPE/
 ├── java/mg/cepe/gestion/
 │   ├── application/      # Point d'entrée JavaFX
@@ -69,9 +75,12 @@ Gestion-Session-CEPE/
 │   └── application.properties
 ├── database/migration/   # Scripts SQL
 └── test/                 # Tests unitaires
-🎯 Architecture
+```
+
+### Architecture
+
+```text
 MVC + Service Layer + DAO
-plain
 FXML/CSS (View)
     ↓
 Controller
@@ -81,13 +90,19 @@ Service (métier)
 DAO (JDBC)
     ↓
 PostgreSQL
-📜 Commandes utiles
-Table
-Commande	Action
-mvn clean compile	Compiler
-mvn javafx:run	Lancer l'application
-mvn clean test	Exécuter les tests
-mvn clean package	Générer le JAR
-📝 Licence
+```
+
+### Commandes utiles
+
+| Commande | Action |
+| -------- | ------ |
+| mvn clean compile | Compiler |
+| mvn javafx:run | Lancer l'application |
+| mvn clean test | Exécuter les tests |
+| mvn clean package | Générer le JAR |
+
+### Licence
+
 Projet universitaire – L2GB Fianarantsoa
+
 Contributeurs : Fy Haritra, Rianala

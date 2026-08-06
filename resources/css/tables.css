@@ -1,0 +1,93 @@
+.table-view {
+    -fx-background-color: transparent;
+    background-color: transparent;
+    -fx-border-color: #d0e8f5;
+    border-color: #d0e8f5;
+    -fx-border-width: 1;
+    border-width: 1px;
+    -fx-border-radius: 12;
+    border-radius: 12px;
+    -fx-padding: 0;
+    padding: 0;
+    -fx-effect: dropshadow(gaussian, rgba(75,156,211,0.06), 8, 0, 0, 2);
+}
+
+.table-view .column-header-background {
+    -fx-background-color: linear-gradient(to bottom, #E9F5FB, #d4ecf8);
+    background-color: linear-gradient(to bottom, #E9F5FB, #d4ecf8);
+    -fx-background-radius: 12 12 0 0;
+    border-radius: 12px 12px 0 0;
+    -fx-padding: 0;
+    padding: 0;
+}
+
+.table-view .column-header {
+    -fx-background-color: transparent;
+    background-color: transparent;
+    -fx-padding: 12 16;
+    padding: 12px 16px;
+    -fx-font-size: 12px;
+    font-size: 12px;
+    -fx-font-weight: 700;
+    font-weight: 700;
+    -fx-text-fill: #2C3E50;
+    color: #2C3E50;
+}
+
+.table-view .table-row-cell {
+    -fx-background-color: #ffffff;
+    background-color: #ffffff;
+    -fx-border-color: transparent transparent #E9F5FB transparent;
+    border-color: transparent transparent #E9F5FB transparent;
+    -fx-border-width: 0 0 1 0;
+    border-width: 0 0 1px 0;
+    -fx-padding: 4 0;
+    padding: 4px 0;
+    -fx-cell-size: 42;
+}
+
+.table-view .table-row-cell:odd {
+    -fx-background-color: #f5fbff;
+    background-color: #f5fbff;
+}
+
+.table-view .table-row-cell:hover {
+    -fx-background-color: #e0f2fd;
+    background-color: #e0f2fd;
+}
+
+.table-view .table-row-cell:selected {
+    -fx-background-color: #cce8f7;
+    background-color: #cce8f7;
+    -fx-text-fill: #2C3E50;
+    color: #2C3E50;
+}
+
+.table-view .table-cell {
+    -fx-padding: 10 16;
+    padding: 10px 16px;
+    -fx-font-size: 13px;
+    font-size: 13px;
+    -fx-text-fill: #2C3E50;
+    color: #2C3E50;
+}
+
+/* ---------- ScrollBar ---------- */
+.scroll-bar:vertical, .scroll-bar:horizontal {
+    -fx-background-color: transparent;
+    background-color: transparent;
+    -fx-pref-width: 8;
+    -fx-pref-height: 8;
+}
+.scroll-bar .thumb {
+    -fx-background-color: #b8ddf0;
+    background-color: #b8ddf0;
+    -fx-background-radius: 4;
+    border-radius: 4px;
+}
+.scroll-bar .thumb:hover {
+    -fx-background-color: #4B9CD3;
+    background-color: #4B9CD3;
+}
+
+/* ---------- Dialog ---------- */

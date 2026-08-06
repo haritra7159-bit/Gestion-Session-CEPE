@@ -1,0 +1,53 @@
+/* =========================================================
+   Design System – Gestion Session CEPE v3
+   Palette: #4B9CD3 #68B3E0 #2C3E50 #E9F5FB
+   ========================================================= */
+
+/* ---------- Root ---------- */
+.root-layout {
+    -fx-font-family: "Segoe UI", "SF Pro Display", Arial, sans-serif;
+    font-family: "Segoe UI", "SF Pro Display", Arial, sans-serif;
+    -fx-background-color: #E9F5FB;
+    background-color: #E9F5FB;
+    -fx-padding: 16;
+    padding: 16px;
+}
+
+/* ---------- Sidebar ---------- */
+.content-wrapper {
+    -fx-background-color: #ffffff;
+    background-color: #ffffff;
+    -fx-background-radius: 16;
+    border-radius: 16px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.06), 12, 0, 0, 2);
+    -fx-padding: 0 14 0 14;
+    padding: 0 14px 0 14px;
+}
+
+/* ---------- Content (pages internes) ---------- */
+.content {
+    -fx-background-color: transparent;
+    background-color: transparent;
+    -fx-padding: 0;
+    padding: 0;
+}
+
+.page-title {
+    -fx-text-fill: #2C3E50;
+    color: #2C3E50;
+    -fx-font-size: 26px;
+    font-size: 26px;
+    -fx-font-weight: bold;
+    font-weight: bold;
+}
+
+.page-description {
+    -fx-text-fill: #5a7a8a;
+    color: #5a7a8a;
+    -fx-font-size: 14px;
+    font-size: 14px;
+    -fx-padding: 4 0 0 0;
+    padding: 4px 0 0 0;
+}
+
+/* ---------- Hero (Accueil) ---------- */

@@ -1,0 +1,157 @@
+.form-grid {
+    -fx-padding: 0;
+    -fx-hgap: 18;
+    -fx-vgap: 14;
+}
+
+.form-label {
+    -fx-font-size: 13px;
+    -fx-font-weight: 600;
+    -fx-text-fill: #2C3E50;
+}
+
+/* ---------- TextField (une seule bordure) ---------- */
+.text-field {
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 10;
+    -fx-border-color: #b8ddf0;
+    -fx-border-radius: 10;
+    -fx-border-width: 1.5;
+    -fx-padding: 10 14;
+    -fx-font-size: 13px;
+    -fx-text-fill: #2C3E50;
+    -fx-prompt-text-fill: #8ab4c7;
+}
+.text-field:focused {
+    -fx-border-color: #4B9CD3;
+    -fx-effect: dropshadow(gaussian, rgba(75,156,211,0.15), 8, 0, 0, 0);
+    -fx-background-color: #f5fbff;
+}
+
+/* ---------- ComboBox : bordure uniquement sur la base ---------- */
+.combo-box {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-border-width: 0;
+    -fx-padding: 0;
+    -fx-background-insets: 0;
+}
+.combo-box-base {
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 10;
+    -fx-border-color: #b8ddf0;
+    -fx-border-radius: 10;
+    -fx-border-width: 1.5;
+    -fx-padding: 4 6 4 10;
+}
+.combo-box-base:focused,
+.combo-box-base:showing {
+    -fx-border-color: #4B9CD3;
+    -fx-effect: dropshadow(gaussian, rgba(75,156,211,0.15), 8, 0, 0, 0);
+    -fx-background-color: #f5fbff;
+}
+/* Champ interne editable : pas de 2e bordure */
+.combo-box .text-field {
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+    -fx-border-color: transparent;
+    -fx-border-width: 0;
+    -fx-padding: 6 4;
+    -fx-prompt-text-fill: #8ab4c7;
+}
+.combo-box .arrow-button {
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+    -fx-border-color: transparent;
+    -fx-padding: 0 8;
+}
+.combo-box .arrow {
+    -fx-background-color: #4B9CD3;
+}
+
+/* ---------- DatePicker : une seule bordure (champ + bouton) ---------- */
+.date-picker {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-border-width: 0;
+    -fx-padding: 0;
+}
+.date-picker > .text-field {
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 10 0 0 10;
+    -fx-border-color: #b8ddf0;
+    -fx-border-width: 1.5 0 1.5 1.5;
+    -fx-border-radius: 10 0 0 10;
+    -fx-padding: 10 14;
+    -fx-prompt-text-fill: #8ab4c7;
+}
+.date-picker > .arrow-button {
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 0 10 10 0;
+    -fx-border-color: #b8ddf0;
+    -fx-border-width: 1.5 1.5 1.5 0;
+    -fx-border-radius: 0 10 10 0;
+    -fx-padding: 8 12;
+}
+.date-picker:focused > .text-field,
+.date-picker:focused > .arrow-button {
+    -fx-border-color: #4B9CD3;
+    -fx-background-color: #f5fbff;
+}
+.date-picker > .arrow-button > .arrow {
+    -fx-background-color: #4B9CD3;
+}
+
+/* ---------- Spinner : une seule bordure ---------- */
+.spinner {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-border-width: 0;
+    -fx-padding: 0;
+}
+.spinner > .text-field {
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 10 0 0 10;
+    -fx-border-color: #b8ddf0;
+    -fx-border-width: 1.5 0 1.5 1.5;
+    -fx-border-radius: 10 0 0 10;
+    -fx-padding: 10 14;
+}
+.spinner > .increment-arrow-button,
+.spinner > .decrement-arrow-button {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #b8ddf0;
+    -fx-background-insets: 0;
+}
+.spinner > .increment-arrow-button {
+    -fx-background-radius: 0 10 0 0;
+    -fx-border-width: 1.5 1.5 0 0;
+    -fx-border-radius: 0 10 0 0;
+}
+.spinner > .decrement-arrow-button {
+    -fx-background-radius: 0 0 10 0;
+    -fx-border-width: 0 1.5 1.5 0;
+    -fx-border-radius: 0 0 10 0;
+}
+.spinner:focused > .text-field {
+    -fx-border-color: #4B9CD3;
+    -fx-background-color: #f5fbff;
+}
+
+/* ---------- Search ---------- */
+.search-box {
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 10;
+    -fx-border-color: #b8ddf0;
+    -fx-border-radius: 10;
+    -fx-border-width: 1.5;
+    -fx-padding: 10 14;
+    -fx-font-size: 13px;
+    -fx-text-fill: #2C3E50;
+    -fx-prompt-text-fill: #8ab4c7;
+}
+.search-box:focused {
+    -fx-border-color: #4B9CD3;
+    -fx-effect: dropshadow(gaussian, rgba(75,156,211,0.15), 8, 0, 0, 0);
+    -fx-background-color: #f5fbff;
+}

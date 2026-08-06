@@ -1,0 +1,88 @@
+.btn {
+    -fx-background-radius: 10;
+    border-radius: 10px;
+    -fx-padding: 10 20;
+    padding: 10px 20px;
+    -fx-font-size: 13px;
+    font-size: 13px;
+    -fx-font-weight: 600;
+    font-weight: 600;
+    -fx-cursor: hand;
+    cursor: pointer;
+    -fx-text-fill: #ffffff;
+    color: #ffffff;
+}
+
+.btn:hover {
+    -fx-scale-x: 1.03;
+    -fx-scale-y: 1.03;
+}
+
+.btn:pressed {
+    -fx-scale-x: 0.97;
+    -fx-scale-y: 0.97;
+}
+
+.btn-primary {
+    -fx-background-color: linear-gradient(to bottom, #4B9CD3, #3a8bc2);
+    background-color: linear-gradient(to bottom, #4B9CD3, #3a8bc2);
+}
+.btn-primary:hover { 
+    -fx-background-color: #5aadde;
+    background-color: #5aadde;
+}
+
+.btn-success {
+    -fx-background-color: linear-gradient(to bottom, #27ae60, #1e8b4c);
+    background-color: linear-gradient(to bottom, #27ae60, #1e8b4c);
+}
+.btn-success:hover { 
+    -fx-background-color: #2ecc71;
+    background-color: #2ecc71;
+}
+
+.btn-danger {
+    -fx-background-color: linear-gradient(to bottom, #e74c3c, #c0392b);
+    background-color: linear-gradient(to bottom, #e74c3c, #c0392b);
+}
+.btn-danger:hover { 
+    -fx-background-color: #ff6b5b;
+    background-color: #ff6b5b;
+}
+
+.btn-info {
+    -fx-background-color: linear-gradient(to bottom, #68B3E0, #4B9CD3);
+    background-color: linear-gradient(to bottom, #68B3E0, #4B9CD3);
+}
+.btn-info:hover {
+    -fx-background-color: #7ec4ed;
+    background-color: #7ec4ed;
+}
+
+.btn-warning {
+    -fx-background-color: linear-gradient(to bottom, #f39c12, #d35400);
+    background-color: linear-gradient(to bottom, #f39c12, #d35400);
+}
+.btn-warning:hover {
+    -fx-background-color: #f5b041;
+    background-color: #f5b041;
+}
+
+.btn-secondary {
+    -fx-background-color: #E9F5FB;
+    background-color: #E9F5FB;
+    -fx-text-fill: #2C3E50;
+    color: #2C3E50;
+    -fx-border-color: #b8ddf0;
+    border-color: #b8ddf0;
+    -fx-border-width: 1;
+    border-width: 1px;
+    -fx-border-radius: 10;
+    border-radius: 10px;
+}
+.btn-secondary:hover {
+    -fx-background-color: #d4ecf8;
+    background-color: #d4ecf8;
+}
+
+/* ---------- Form ---------- */

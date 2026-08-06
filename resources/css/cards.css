@@ -1,0 +1,98 @@
+.hero-title {
+    -fx-text-fill: #2C3E50;
+    color: #2C3E50;
+    -fx-font-size: 32px;
+    font-size: 32px;
+    -fx-font-weight: bold;
+    font-weight: bold;
+}
+
+.hero-subtitle {
+    -fx-text-fill: #5a7a8a;
+    color: #5a7a8a;
+    -fx-font-size: 14px;
+    font-size: 14px;
+    -fx-wrap-text: true;
+}
+
+/* ---------- Cards ---------- */
+.card {
+    -fx-background-color: #ffffff;
+    background-color: #ffffff;
+    -fx-background-radius: 14;
+    border-radius: 14px;
+    -fx-padding: 22;
+    padding: 22px;
+    -fx-effect: dropshadow(gaussian, rgba(75,156,211,0.1), 14, 0, 0, 4);
+    -fx-border-color: #d0e8f5;
+    border-color: #d0e8f5;
+    -fx-border-width: 1;
+    border-width: 1px;
+    -fx-border-radius: 14;
+    border-radius: 14px;
+}
+
+.card-hover:hover {
+    -fx-effect: dropshadow(gaussian, rgba(75,156,211,0.2), 20, 0, 0, 8);
+    -fx-scale-x: 1.015;
+    -fx-scale-y: 1.015;
+    -fx-cursor: hand;
+    cursor: pointer;
+    -fx-border-color: #4B9CD3;
+    border-color: #4B9CD3;
+}
+
+.card-title {
+    -fx-font-size: 17px;
+    font-size: 17px;
+    -fx-font-weight: bold;
+    font-weight: bold;
+    -fx-text-fill: #2C3E50;
+    color: #2C3E50;
+}
+
+.card-desc {
+    -fx-font-size: 13px;
+    font-size: 13px;
+    -fx-text-fill: #5a7a8a;
+    color: #5a7a8a;
+    -fx-padding: 6 0 0 0;
+    padding: 6px 0 0 0;
+    -fx-wrap-text: true;
+}
+
+.card-icon {
+    -fx-font-size: 28px;
+    font-size: 28px;
+    -fx-padding: 0 0 10 0;
+    padding: 0 0 10px 0;
+}
+
+/* ---------- Stat Card ---------- */
+.stat-card {
+    -fx-background-color: linear-gradient(to bottom right, #4B9CD3, #68B3E0);
+    background-color: linear-gradient(to bottom right, #4B9CD3, #68B3E0);
+    -fx-background-radius: 14;
+    border-radius: 14px;
+    -fx-padding: 20;
+    padding: 20px;
+    -fx-effect: dropshadow(gaussian, rgba(75,156,211,0.35), 14, 0, 0, 5);
+}
+
+.stat-value {
+    -fx-font-size: 30px;
+    font-size: 30px;
+    -fx-font-weight: bold;
+    font-weight: bold;
+    -fx-text-fill: #ffffff;
+    color: #ffffff;
+}
+
+.stat-label {
+    -fx-font-size: 13px;
+    font-size: 13px;
+    -fx-text-fill: #d0ecfb;
+    color: #d0ecfb;
+}
+
+/* ---------- Buttons ---------- */

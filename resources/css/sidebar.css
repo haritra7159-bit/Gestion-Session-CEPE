@@ -1,0 +1,87 @@
+.sidebar {
+    -fx-min-width: 220px;
+    min-width: 220px;
+    -fx-pref-width: 220px;
+    pref-width: 220px;
+    -fx-max-width: 220px;
+    max-width: 220px;
+    -fx-background-color: linear-gradient(to bottom, #2C3E50, #1a252f);
+    background-color: linear-gradient(to bottom, #2C3E50, #1a252f);
+    -fx-spacing: 6;
+    spacing: 6px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.25), 16, 0, 4, 0);
+    -fx-background-radius: 16;
+    border-radius: 16px;
+}
+
+.brand {
+    -fx-text-fill: #ffffff;
+    color: #ffffff;
+    -fx-font-size: 24px;
+    font-size: 24px;
+    -fx-font-weight: bold;
+    font-weight: bold;
+    -fx-padding: 0 0 2 0;
+    padding: 0 0 2px 0;
+}
+
+.brand-accent {
+    -fx-text-fill: #68B3E0;
+    color: #68B3E0;
+    -fx-font-size: 24px;
+    font-size: 24px;
+    -fx-font-weight: bold;
+    font-weight: bold;
+}
+
+.subtitle {
+    -fx-text-fill: #8ab4c7;
+    color: #8ab4c7;
+    -fx-font-size: 13px;
+    font-size: 13px;
+    -fx-padding: 0 0 20 0;
+    padding: 0 0 20px 0;
+}
+
+/* Textes plus visibles sur fond sombre */
+.nav-button {
+    -fx-alignment: CENTER_LEFT;
+    -fx-background-color: transparent;
+    background-color: transparent;
+    -fx-text-fill: #d6e8f2;
+    color: #d6e8f2;
+    -fx-font-size: 14px;
+    font-size: 14px;
+    -fx-padding: 11 16;
+    padding: 11px 16px;
+    -fx-background-radius: 10;
+    border-radius: 10px;
+    -fx-cursor: hand;
+    cursor: pointer;
+    -fx-graphic-text-gap: 12;
+}
+
+.nav-button:hover {
+    -fx-background-color: rgba(75,156,211,0.18);
+    background-color: rgba(75,156,211,0.18);
+    -fx-text-fill: #ffffff;
+    color: #ffffff;
+}
+
+.nav-button:pressed {
+    -fx-background-color: rgba(75,156,211,0.28);
+    background-color: rgba(75,156,211,0.28);
+}
+
+.nav-button.active {
+    -fx-background-color: #4B9CD3;
+    background-color: #4B9CD3;
+    -fx-text-fill: #ffffff;
+    color: #ffffff;
+    -fx-font-weight: bold;
+    font-weight: bold;
+    -fx-background-radius: 10;
+    border-radius: 10px;
+}
+
+/* ---------- enveloppe du contenu ---------- */

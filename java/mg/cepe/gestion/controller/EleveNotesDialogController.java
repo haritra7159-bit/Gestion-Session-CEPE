@@ -3,154 +3,261 @@ package mg.cepe.gestion.controller;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
+import mg.cepe.gestion.controller.eleve.EleveReleveActions;
+import mg.cepe.gestion.controller.notes.NotesFormHelper;
 import mg.cepe.gestion.model.Eleve;
-import mg.cepe.gestion.model.LigneReleve;
 import mg.cepe.gestion.model.Matiere;
 import mg.cepe.gestion.model.Note;
-import mg.cepe.gestion.pdf.RelevePdfGenerator;
-import mg.cepe.gestion.service.EcoleService;
-import mg.cepe.gestion.service.MatiereService;
-import mg.cepe.gestion.service.NoteService;
 import mg.cepe.gestion.service.impl.EcoleServiceImpl;
 import mg.cepe.gestion.service.impl.MatiereServiceImpl;
 import mg.cepe.gestion.service.impl.NoteServiceImpl;
+import mg.cepe.gestion.util.CodeFormat;
+import mg.cepe.gestion.util.UiDialogs;
 
-import java.io.File;
-import java.net.URL;
-import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
-import java.util.Optional;
-import java.util.ResourceBundle;
+import java.util.Set;
+import java.util.stream.Collectors;
 
-public class EleveNotesDialogController implements Initializable {
+/**
+ * Dialogue notes d'un élève.
+ * - Sans notes : saisie libre année/matière ; matières déjà notées retirées du combo.
+ * - Avec notes : année par défaut = dernière année de l'élève (modifiable pour redoublement).
+ */
+public class EleveNotesDialogController {
     @FXML private Label lblTitre;
-    @FXML private TextField txtAnnee, txtNote;
+    @FXML private ComboBox<String> cbAnnee;
     @FXML private ComboBox<Matiere> cbMatiere;
+    @FXML private TextField txtNote;
     @FXML private TableView<Note> tableNotes;
     @FXML private TableColumn<Note, String> colAnnee, colMatiere;
     @FXML private TableColumn<Note, Number> colNote;
+    @FXML private Button btnAjouter, btnModifier, btnSupprimer, btnClear, btnReleve;
 
-    private final NoteService noteService = new NoteServiceImpl();
-    private final MatiereService matiereService = new MatiereServiceImpl();
-    private final EcoleService ecoleService = new EcoleServiceImpl();
+    private final NoteServiceImpl noteService = new NoteServiceImpl();
+    private final MatiereServiceImpl matiereService = new MatiereServiceImpl();
     private final ObservableList<Note> data = FXCollections.observableArrayList();
-
+    private NotesFormHelper form;
     private Eleve eleve;
-    private Stage stage;
-    private static final String REGEX_ANNEE = "^[0-9]{4}-[0-9]{4}$";
+    private boolean loading;
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        cbMatiere.setItems(FXCollections.observableArrayList(matiereService.listerTous()));
-        colAnnee.setCellValueFactory(c -> new javafx.beans.property.SimpleStringProperty(c.getValue().getAnneeScolaire()));
+    @FXML
+    private void initialize() {
+        form = new NotesFormHelper(cbAnnee, cbMatiere, txtNote);
+        cbAnnee.setEditable(true);
+        cbAnnee.setPromptText("AAAA-AAAA");
+        setupColumns();
+        tableNotes.setItems(data);
+        tableNotes.getSelectionModel().selectedItemProperty()
+                .addListener((o, a, v) -> { if (v != null && !loading) onSelectNote(v); });
+        cbAnnee.valueProperty().addListener((o, a, v) -> { if (!loading) onAnneeChanged(); });
+        cbAnnee.getEditor().textProperty().addListener((o, a, v) -> { if (!loading) onAnneeChanged(); });
+    }
+
+    private void setupColumns() {
+        colAnnee.setCellValueFactory(c ->
+                new javafx.beans.property.SimpleStringProperty(c.getValue().getAnneeScolaire()));
         colMatiere.setCellValueFactory(c -> {
             Matiere m = matiereService.trouverParId(c.getValue().getNumMat());
-            return new javafx.beans.property.SimpleStringProperty(m != null ? m.getDesignMat() : "");
+            return new javafx.beans.property.SimpleStringProperty(
+                    m != null ? m.getDesignMat() : c.getValue().getNumMat());
         });
-        colNote.setCellValueFactory(c -> new javafx.beans.property.SimpleDoubleProperty(c.getValue().getNote()));
-        tableNotes.setItems(data);
-        tableNotes.getSelectionModel().selectedItemProperty().addListener((obs, old, val) -> {
-            if (val != null) fillForm(val);
-        });
+        colNote.setCellValueFactory(c ->
+                new javafx.beans.property.SimpleDoubleProperty(c.getValue().getNote()));
     }
 
-    public void setEleve(Eleve eleve, Stage stage) {
-        this.eleve = eleve; this.stage = stage;
-        lblTitre.setText("Notes de " + eleve.getNomComplet());
-        refresh();
+    public void setEleve(Eleve eleve) {
+        this.eleve = eleve;
+        if (lblTitre != null) {
+            lblTitre.setText("Notes de " + eleve.getNom() + " " + eleve.getPrenom());
+        }
+        loading = true;
+        try {
+            List<Note> all = noteService.listerParEleve(eleve.getNumEleve());
+            List<String> anneesEleve = all.stream()
+                    .map(Note::getAnneeScolaire).distinct()
+                    .sorted(Comparator.reverseOrder()).toList();
+            List<String> anneesGlobal = noteService.listerAnnees();
+            // Combo : années de l'élève en tête + autres années globales
+            java.util.LinkedHashSet<String> merged = new java.util.LinkedHashSet<>(anneesEleve);
+            merged.addAll(anneesGlobal);
+            cbAnnee.setItems(FXCollections.observableArrayList(merged));
+
+            if (!anneesEleve.isEmpty()) {
+                // Cas 2 : notes existantes → année par défaut = plus récente
+                cbAnnee.setValue(anneesEleve.get(0));
+                if (cbAnnee.getEditor() != null) {
+                    cbAnnee.getEditor().setText(anneesEleve.get(0));
+                }
+            } else {
+                // Cas 1 : aucune note → saisie libre
+                cbAnnee.setValue(null);
+                if (cbAnnee.getEditor() != null) cbAnnee.getEditor().clear();
+            }
+        } finally {
+            loading = false;
+        }
+        refreshTableAndMatieres();
+        updateButtons();
     }
 
-    private void fillForm(Note n) {
-        txtAnnee.setText(n.getAnneeScolaire());
-        txtNote.setText(String.valueOf(n.getNote()));
-        cbMatiere.getItems().stream().filter(m -> m.getNumMat().equals(n.getNumMat())).findFirst().ifPresent(cbMatiere::setValue);
+    private void onAnneeChanged() {
+        refreshTableAndMatieres();
+        updateButtons();
+    }
+
+    private void refreshTableAndMatieres() {
+        if (eleve == null) return;
+        String annee = form.resolveAnnee();
+        if (CodeFormat.matches(annee, CodeFormat.REGEX_ANNEE)) {
+            data.setAll(noteService.listerParEleveEtAnnee(eleve.getNumEleve(), annee));
+        } else {
+            data.setAll(noteService.listerParEleve(eleve.getNumEleve()));
+        }
+        refreshMatiereCombo();
+    }
+
+    /** Matières déjà notées pour l'année choisie → absentes du combo. */
+    private void refreshMatiereCombo() {
+        if (eleve == null) return;
+        String annee = form.resolveAnnee();
+        List<Matiere> all = matiereService.listerTous();
+        Set<String> used = Set.of();
+        if (CodeFormat.matches(annee, CodeFormat.REGEX_ANNEE)) {
+            used = noteService.listerParEleveEtAnnee(eleve.getNumEleve(), annee).stream()
+                    .map(Note::getNumMat).collect(Collectors.toSet());
+        }
+        Note selected = tableNotes.getSelectionModel().getSelectedItem();
+        String keepMat = selected != null ? selected.getNumMat() : null;
+        Set<String> finalUsed = used;
+        List<Matiere> available = all.stream()
+                .filter(m -> !finalUsed.contains(m.getNumMat())
+                        || (keepMat != null && keepMat.equals(m.getNumMat())))
+                .toList();
+        Matiere current = cbMatiere.getValue();
+        cbMatiere.setItems(FXCollections.observableArrayList(available));
+        if (current != null && available.stream().anyMatch(m -> m.getNumMat().equals(current.getNumMat()))) {
+            cbMatiere.setValue(current);
+        } else if (keepMat != null) {
+            available.stream().filter(m -> m.getNumMat().equals(keepMat)).findFirst()
+                    .ifPresent(cbMatiere::setValue);
+        } else {
+            cbMatiere.setValue(null);
+        }
+    }
+
+    private void onSelectNote(Note n) {
+        form.fillFromNote(n);
+        refreshMatiereCombo();
+        matiereService.listerTous().stream()
+                .filter(m -> m.getNumMat().equals(n.getNumMat()))
+                .findFirst().ifPresent(cbMatiere::setValue);
+    }
+
+    private void updateButtons() {
+        boolean hasAny = eleve != null && noteService.aDesNotes(eleve.getNumEleve());
+        boolean tableHas = !data.isEmpty();
+        // Ajouter toujours possible (nouvelle matière / nouvelle année)
+        if (btnAjouter != null) btnAjouter.setDisable(false);
+        // Modifier / Supprimer / Relevé si des notes existent pour le contexte
+        if (btnModifier != null) btnModifier.setDisable(!tableHas && !hasAny);
+        if (btnSupprimer != null) btnSupprimer.setDisable(!tableHas && !hasAny);
+        if (btnReleve != null) btnReleve.setDisable(!hasAny);
+        if (btnClear != null) btnClear.setDisable(false);
     }
 
     @FXML private void handleAjouter() {
-        if (!valider()) return;
-        Note n = new Note(txtAnnee.getText().trim(), eleve.getNumEleve(), cbMatiere.getValue().getNumMat(), Double.parseDouble(txtNote.getText().trim()));
-        noteService.ajouter(n);
-        refresh(); handleClear();
+        if (!form.valider()) return;
+        try {
+            noteService.ajouter(form.buildNote(eleve.getNumEleve()));
+            UiDialogs.info("Note ajoutée avec succès.");
+            tableNotes.getSelectionModel().clearSelection();
+            form.clearFields();
+            // garder l'année saisie
+            String a = form.resolveAnnee();
+            loading = true;
+            try {
+                if (CodeFormat.matches(a, CodeFormat.REGEX_ANNEE)) {
+                    cbAnnee.setValue(a);
+                    if (cbAnnee.getEditor() != null) cbAnnee.getEditor().setText(a);
+                }
+            } finally { loading = false; }
+            refreshTableAndMatieres();
+            updateButtons();
+        } catch (Exception ex) {
+            UiDialogs.warn("Erreur : " + ex.getMessage());
+        }
     }
 
     @FXML private void handleModifier() {
-        Note selected = tableNotes.getSelectionModel().getSelectedItem();
-        if (selected == null) { alert(Alert.AlertType.WARNING, "Sélectionnez une note à modifier."); return; }
-        if (!valider()) return;
-        Note n = new Note(txtAnnee.getText().trim(), eleve.getNumEleve(), cbMatiere.getValue().getNumMat(), Double.parseDouble(txtNote.getText().trim()));
-        noteService.modifier(n);
-        refresh(); handleClear();
+        if (data.isEmpty()) {
+            UiDialogs.warn("Aucune note à modifier pour cette année.");
+            return;
+        }
+        if (!form.valider()) return;
+        if (!UiDialogs.confirm("Modifier la note sélectionnée ?")) return;
+        try {
+            noteService.modifier(form.buildNote(eleve.getNumEleve()));
+            UiDialogs.info("Note modifiée avec succès.");
+            refreshTableAndMatieres();
+            updateButtons();
+        } catch (Exception ex) {
+            UiDialogs.warn("Erreur : " + ex.getMessage());
+        }
     }
 
     @FXML private void handleSupprimer() {
-        Note selected = tableNotes.getSelectionModel().getSelectedItem();
-        if (selected == null) { alert(Alert.AlertType.WARNING, "Sélectionnez une note à supprimer."); return; }
-        noteService.supprimer(selected.getAnneeScolaire(), eleve.getNumEleve(), selected.getNumMat());
-        refresh(); handleClear();
+        if (form.getMatiere() == null) {
+            UiDialogs.warn("Sélectionnez une ligne (matière) à supprimer.");
+            return;
+        }
+        if (!UiDialogs.confirm("Supprimer la note de « " + form.getMatiere().getDesignMat()
+                + " » pour " + form.resolveAnnee() + " ?")) return;
+        try {
+            noteService.supprimer(form.resolveAnnee(), eleve.getNumEleve(), form.getMatiere().getNumMat());
+            UiDialogs.info("Note supprimée avec succès.");
+            tableNotes.getSelectionModel().clearSelection();
+            form.clearFields();
+            refreshTableAndMatieres();
+            updateButtons();
+        } catch (Exception ex) {
+            UiDialogs.warn("Erreur : " + ex.getMessage());
+        }
     }
 
     @FXML private void handleClear() {
-        txtAnnee.clear(); txtNote.clear(); cbMatiere.setValue(null);
+        if (!UiDialogs.confirm("Réinitialiser le formulaire de saisie ?")) return;
         tableNotes.getSelectionModel().clearSelection();
+        form.clearFields();
+        refreshMatiereCombo();
+    }
+
+    @FXML private void handleFermer() {
+        ((Stage) tableNotes.getScene().getWindow()).close();
     }
 
     @FXML private void handleGenererReleve() {
-        if (txtAnnee.getText().isBlank()) { alert(Alert.AlertType.WARNING, "Renseignez l\'année scolaire."); return; }
-        String annee = txtAnnee.getText().trim();
-        Alert confirm = new Alert(Alert.AlertType.CONFIRMATION, "Générer le relevé de " + eleve.getNomComplet() + " pour " + annee + " ?", ButtonType.OK, ButtonType.CANCEL);
-        Optional<ButtonType> res = confirm.showAndWait();
-        if (res.isEmpty() || res.get() != ButtonType.OK) return;
-
-        DirectoryChooser dc = new DirectoryChooser(); dc.setTitle("Dossier de sauvegarde");
-        File dir = dc.showDialog(stage); if (dir == null) return;
-
-        List<Note> notes = noteService.listerParEleveEtAnnee(eleve.getNumEleve(), annee);
-        List<Matiere> matieres = matiereService.listerTous();
-        List<LigneReleve> lignes = new ArrayList<>();
-        double totalPondere = 0; int totalCoef = 0;
-        for (Note n : notes) {
-            Matiere mat = matieres.stream().filter(m -> m.getNumMat().equals(n.getNumMat())).findFirst().orElse(null);
-            if (mat != null) {
-                double np = n.getNote() * mat.getCoef();
-                lignes.add(new LigneReleve(mat.getDesignMat(), mat.getCoef(), n.getNote(), np));
-                totalPondere += np; totalCoef += mat.getCoef();
+        if (eleve == null || !noteService.aDesNotes(eleve.getNumEleve())) {
+            UiDialogs.warn("Cet élève n'a aucune note. Saisissez d'abord les notes.");
+            return;
+        }
+        String annee = form.resolveAnnee();
+        if (!CodeFormat.matches(annee, CodeFormat.REGEX_ANNEE)) {
+            // fallback dernière année de l'élève
+            List<String> ys = noteService.listerParEleve(eleve.getNumEleve()).stream()
+                    .map(Note::getAnneeScolaire).distinct().sorted(Comparator.reverseOrder()).toList();
+            if (ys.isEmpty()) {
+                UiDialogs.warn("Aucune année scolaire disponible.");
+                return;
             }
+            annee = ys.get(0);
         }
-        double moyenne = totalCoef == 0 ? 0 : totalPondere / totalCoef;
-        String nomEcole = "Inconnue";
-        var ec = ecoleService.trouverParId(eleve.getNumEcole());
-        if (ec != null) nomEcole = ec.getDesign();
-
-        String chemin = dir.getAbsolutePath() + "/Releve_" + eleve.getNom() + "_" + annee + ".pdf";
-        try {
-            RelevePdfGenerator.generer(chemin, annee, eleve, nomEcole, lignes, totalPondere, totalCoef, moyenne);
-            alert(Alert.AlertType.INFORMATION, "PDF généré !\n" + chemin);
-        } catch (Exception ex) { alert(Alert.AlertType.ERROR, "Erreur : " + ex.getMessage()); }
+        if (!UiDialogs.confirm("Générer le relevé PDF pour " + eleve.getNom() + " " + eleve.getPrenom()
+                + "\nAnnée scolaire : " + annee + " ?")) return;
+        EleveReleveActions actions = new EleveReleveActions(
+                noteService, matiereService, new EcoleServiceImpl(), null);
+        actions.generer(eleve, annee);
     }
-
-    @FXML private void handleFermer() { stage.close(); }
-
-    private void refresh() {
-        if (eleve != null) data.setAll(noteService.listerTous().stream().filter(n -> n.getNumEleve().equals(eleve.getNumEleve())).toList());
-    }
-
-    private boolean valider() {
-        if (txtAnnee.getText().isBlank() || txtNote.getText().isBlank() || cbMatiere.getValue() == null) {
-            alert(Alert.AlertType.WARNING, "Remplissez tous les champs."); return false;
-        }
-        if (!txtAnnee.getText().trim().matches(REGEX_ANNEE)) {
-            alert(Alert.AlertType.WARNING, "Format année invalide (YYYY-YYYY)."); return false;
-        }
-        try {
-            double note = Double.parseDouble(txtNote.getText().trim());
-            if (note < 0 || note > 20) { alert(Alert.AlertType.WARNING, "Note entre 0 et 20."); return false; }
-        } catch (NumberFormatException e) { alert(Alert.AlertType.WARNING, "Note invalide."); return false; }
-        return true;
-    }
-
-    private void alert(Alert.AlertType type, String msg) { new Alert(type, msg, ButtonType.OK).showAndWait(); }
 }

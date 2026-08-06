@@ -35,12 +35,12 @@ public class EleveDaoImpl implements EleveDao {
         }catch(SQLException ex){throw new DatabaseException("Erreur recherche élève",ex);}return Optional.empty();
     }
     @Override public List<Eleve> findAll() {
-        String sql="SELECT * FROM eleve ORDER BY nom,prenom";List<Eleve>list=new ArrayList<>();
+        String sql="SELECT * FROM eleve ORDER BY numeleve DESC";List<Eleve>list=new ArrayList<>();
         try(Connection c=DatabaseConfig.getDataSource().getConnection();Statement st=c.createStatement();ResultSet rs=st.executeQuery(sql)){while(rs.next())list.add(map(rs));}
         catch(SQLException ex){throw new DatabaseException("Erreur listage élèves",ex);}return list;
     }
     @Override public List<Eleve> searchByNomOrPrenom(String critere) {
-        String sql="SELECT * FROM eleve WHERE nom ILIKE ? OR prenom ILIKE ? ORDER BY nom,prenom";List<Eleve>list=new ArrayList<>();
+        String sql="SELECT * FROM eleve WHERE nom ILIKE ? OR prenom ILIKE ? ORDER BY numeleve DESC";List<Eleve>list=new ArrayList<>();
         try(Connection c=DatabaseConfig.getDataSource().getConnection();PreparedStatement ps=c.prepareStatement(sql)){
             String like="%"+critere+"%";ps.setString(1,like);ps.setString(2,like);ResultSet rs=ps.executeQuery();while(rs.next())list.add(map(rs));
         }catch(SQLException ex){throw new DatabaseException("Erreur recherche LIKE",ex);}return list;

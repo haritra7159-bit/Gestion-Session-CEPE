@@ -35,7 +35,7 @@ public class EcoleDaoImpl implements EcoleDao {
         }catch(SQLException ex){throw new DatabaseException("Erreur recherche école",ex);}return Optional.empty();
     }
     @Override public List<Ecole> findAll() {
-        String sql="SELECT * FROM ecole ORDER BY design";List<Ecole>list=new ArrayList<>();
+        String sql="SELECT * FROM ecole ORDER BY numecole DESC";List<Ecole>list=new ArrayList<>();
         try(Connection c=DatabaseConfig.getDataSource().getConnection();Statement st=c.createStatement();ResultSet rs=st.executeQuery(sql)){
             while(rs.next())list.add(map(rs));
         }catch(SQLException ex){throw new DatabaseException("Erreur listage écoles",ex);}return list;

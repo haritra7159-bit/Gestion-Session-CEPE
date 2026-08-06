@@ -12,7 +12,7 @@
 
    <HBox spacing="10.0" alignment="CENTER_LEFT">
       <Label text="Année scolaire :" styleClass="form-label"/>
-      <TextField fx:id="txtAnnee" promptText="AAAA-AAAA" styleClass="search-box" prefWidth="150"/>
+      <ComboBox fx:id="cbAnnee" editable="true" promptText="Choisir une année scolaire" prefWidth="160"/>
       <Button text="Tous" onAction="#handleDeliberer" styleClass="btn, btn-primary"/>
       <Button text="Réussis" onAction="#handleReussis" styleClass="btn, btn-success"/>
       <Button text="Échoués" onAction="#handleEchoues" styleClass="btn, btn-danger"/>

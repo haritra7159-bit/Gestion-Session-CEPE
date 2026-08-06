@@ -12,7 +12,7 @@
 
    <GridPane hgap="14.0" vgap="12.0" styleClass="form-grid">
       <Label text="Numéro :" styleClass="form-label" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
-      <TextField fx:id="txtNumEleve" promptText="Format valide ELV-XXXX" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+      <ComboBox fx:id="cbNumEleve" editable="true" promptText="ELV-XXXX" prefWidth="160" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
       <Label text="École :" styleClass="form-label" GridPane.rowIndex="0" GridPane.columnIndex="2"/>
       <ComboBox fx:id="cbEcole" promptText="Choisir une école" GridPane.rowIndex="0" GridPane.columnIndex="3"/>
       <Label text="Nom :" styleClass="form-label" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
