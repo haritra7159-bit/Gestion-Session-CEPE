@@ -14,7 +14,7 @@ CREATE TABLE IF NOT EXISTS eleve (
 CREATE TABLE IF NOT EXISTS matiere (
     nummat VARCHAR(20) PRIMARY KEY,
     designmat VARCHAR(100) NOT NULL,
-    coef SMALLINT NOT NULL CHECK (coef BETWEEN 1 AND 10)
+    coef NUMERIC(3,2) NOT NULL CHECK (coef > 0 AND coef <= 10)
 );
 CREATE TABLE IF NOT EXISTS note (
     annee_scolaire VARCHAR(9) NOT NULL CHECK (annee_scolaire ~ '^[0-9]{4}-[0-9]{4}$'),

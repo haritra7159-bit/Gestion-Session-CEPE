@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1"
+    fx:controller="mg.cepe.gestion.controller.RelevePreviewController"
+    spacing="12.0" styleClass="preview-paper" prefWidth="380.0">
+    <padding>
+        <Insets top="20.0" right="20.0" bottom="20.0" left="20.0" />
+    </padding>
+
+    <Label text="RELEVÉ DE NOTES - SESSION CEPE" styleClass="preview-title" alignment="CENTER"
+        maxWidth="Infinity" />
+
+    <VBox spacing="4.0" styleClass="preview-info-block">
+        <Label fx:id="lblAnnee" text="Année scolaire : -" styleClass="preview-info-text" />
+        <Label fx:id="lblNom" text="Nom : -" styleClass="preview-info-text" />
+        <Label fx:id="lblPrenom" text="Prénoms : -" styleClass="preview-info-text" />
+        <Label fx:id="lblDateNaissance" text="Date de naissance : -" styleClass="preview-info-text" />
+        <Label fx:id="lblEcole" text="École : -" styleClass="preview-info-text" />
+    </VBox>
+
+    <TableView fx:id="tvLignes" VBox.vgrow="ALWAYS" styleClass="preview-table">
+        <columns>
+            <TableColumn fx:id="colMatiere" text="Matière" prefWidth="140.0" />
+            <TableColumn fx:id="colCoef" text="Coef" prefWidth="50.0" style="-fx-alignment: CENTER;" />
+            <TableColumn fx:id="colNote" text="Note" prefWidth="60.0" style="-fx-alignment: CENTER;" />
+            <TableColumn fx:id="colPondere" text="Pondérée" prefWidth="80.0"
+                style="-fx-alignment: CENTER;" />
+        </columns>
+        <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+        </columnResizePolicy>
+    </TableView>
+
+    <HBox alignment="CENTER_RIGHT" spacing="15.0">
+        <Label fx:id="lblTotalCoef" text="Total Coef : 0" styleClass="preview-total-text" />
+        <Label fx:id="lblTotalPondere" text="Total : 0" styleClass="preview-total-text" />
+    </HBox>
+    <HBox alignment="CENTER_RIGHT">
+        <Label fx:id="lblMoyenne" text="Moyenne : -- / 20" styleClass="preview-moyenne-text" />
+    </HBox>
+</VBox>

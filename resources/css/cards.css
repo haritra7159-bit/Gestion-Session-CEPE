@@ -95,4 +95,59 @@
     color: #d0ecfb;
 }
 
-/* ---------- Buttons ---------- */
+/* Bon, flemme de créer un fichier pour si peu */
+.preview-paper {
+    -fx-background-color: #ffffff;
+    -fx-background-radius: 12;
+    -fx-border-color: #b8ddf0;
+    -fx-border-radius: 12;
+    -fx-border-width: 1.5;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.06), 12, 0, 0, 4);
+}
+
+.preview-title {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1A365D;
+    -fx-border-color: transparent transparent #b8ddf0 transparent;
+    -fx-border-width: 0 0 1.5 0;
+    -fx-padding: 0 0 8 0;
+}
+
+.preview-info-text {
+    -fx-font-size: 11px;
+    -fx-text-fill: #334155;
+}
+
+.preview-table {
+    -fx-background-color: transparent;
+    -fx-font-size: 11px;
+}
+
+.preview-table .column-header-background {
+    -fx-background-color: #C8DCF0;
+    -fx-background-radius: 6 6 0 0;
+}
+
+.preview-table .column-header {
+    -fx-background-color: transparent;
+    -fx-size: 28px;
+}
+
+.preview-table .column-header .label {
+    -fx-text-fill: #1E293B;
+    -fx-font-weight: bold;
+    -fx-font-size: 11px;
+}
+
+.preview-total-text {
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #334155;
+}
+
+.preview-moyenne-text {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2563EB;
+}
