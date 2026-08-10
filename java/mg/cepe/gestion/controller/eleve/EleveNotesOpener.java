@@ -13,8 +13,8 @@ import mg.cepe.gestion.util.UiDialogs;
 public final class EleveNotesOpener {
 
     private static final String[] STYLES = {
-        "/css/base.css", "/css/sidebar.css", "/css/buttons.css",
-        "/css/forms.css", "/css/tables.css", "/css/cards.css", "/css/dialogs.css"
+            "/css/base.css", "/css/sidebar.css", "/css/buttons.css",
+            "/css/forms.css", "/css/tables.css", "/css/cards.css", "/css/dialogs.css"
     };
 
     public void ouvrir(Eleve eleve) {
@@ -24,7 +24,7 @@ public final class EleveNotesOpener {
             EleveNotesDialogController ctrl = loader.getController();
             ctrl.setEleve(eleve);
 
-            Scene scene = new Scene(root, 720, 580);
+            Scene scene = new Scene(root, 760, 600);
             for (String css : STYLES) {
                 var url = getClass().getResource(css);
                 if (url != null) {
@@ -36,11 +36,12 @@ public final class EleveNotesOpener {
             stage.setTitle("Notes – " + eleve.getNom() + " " + eleve.getPrenom());
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.setScene(scene);
-            stage.setMinWidth(640);
+            stage.setMinWidth(680);
             stage.setMinHeight(520);
             stage.showAndWait();
         } catch (Exception ex) {
-            UiDialogs.warn("Impossible d'ouvrir les notes : " + ex.getMessage());
+            ex.printStackTrace();
+            UiDialogs.warn("Erreur d'ouverture : " + ex.getClass().getSimpleName() + " - " + ex.getMessage());
         }
     }
 }

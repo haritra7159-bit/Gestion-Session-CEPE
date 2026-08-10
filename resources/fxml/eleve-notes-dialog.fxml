@@ -2,42 +2,39 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<VBox spacing="18.0" styleClass="dialog-root, content" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mg.cepe.gestion.controller.EleveNotesDialogController">
-   <padding><Insets top="32.0" right="36.0" bottom="32.0" left="36.0"/></padding>
 
-   <Label fx:id="lblTitre" text="Notes de l'élève" styleClass="dialog-title"/>
+<VBox spacing="18.0" styleClass="dialog-root, content" prefWidth="1120.0" prefHeight="620.0"
+   xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1"
+   fx:controller="mg.cepe.gestion.controller.EleveNotesDialogController">
+   <padding>
+      <Insets top="24.0" right="28.0" bottom="24.0" left="28.0" />
+   </padding>
 
-   <GridPane hgap="14.0" vgap="14.0" styleClass="form-grid">
-      <Label text="Année scolaire :" styleClass="form-label" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
-      <ComboBox fx:id="cbAnnee" editable="true" promptText="AAAA-AAAA" prefWidth="200"
-                GridPane.rowIndex="0" GridPane.columnIndex="1"/>
-
-      <Label text="Matière :" styleClass="form-label" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
-      <ComboBox fx:id="cbMatiere" promptText="Choisir une matière" prefWidth="220"
-                GridPane.rowIndex="1" GridPane.columnIndex="1"/>
-
-      <Label text="Note (/20) :" styleClass="form-label" GridPane.rowIndex="1" GridPane.columnIndex="2"/>
-      <TextField fx:id="txtNote" promptText="15.5" prefWidth="110"
-                 GridPane.rowIndex="1" GridPane.columnIndex="3"/>
-   </GridPane>
-
-   <HBox spacing="10.0">
-      <Button fx:id="btnAjouter" text="Ajouter" onAction="#handleAjouter" styleClass="btn, btn-primary"/>
-      <Button fx:id="btnModifier" text="Modifier" onAction="#handleModifier" styleClass="btn, btn-warning"/>
-      <Button fx:id="btnSupprimer" text="Supprimer" onAction="#handleSupprimer" styleClass="btn, btn-danger"/>
-      <Button fx:id="btnClear" text="Réinitialiser" onAction="#handleClear" styleClass="btn, btn-secondary"/>
+   <HBox alignment="CENTER_LEFT" spacing="20.0">
+      <Label fx:id="lblTitre" text="Notes de l'élève" styleClass="dialog-title" />
+      <Region HBox.hgrow="ALWAYS" />
+      <HBox alignment="CENTER" spacing="10.0">
+         <Label text="Année scolaire :" styleClass="form-label" />
+         <ComboBox fx:id="cbAnnee" editable="true" promptText="AAAA-AAAA" prefWidth="160" />
+      </HBox>
    </HBox>
 
-   <TableView fx:id="tableNotes" VBox.vgrow="ALWAYS" prefHeight="280.0" styleClass="table-view">
-      <columns>
-         <TableColumn fx:id="colAnnee" text="Année" prefWidth="120"/>
-         <TableColumn fx:id="colMatiere" text="Matière" prefWidth="240"/>
-         <TableColumn fx:id="colNote" text="Note" prefWidth="100"/>
-      </columns>
-   </TableView>
+   <HBox spacing="20.0" VBox.vgrow="ALWAYS">
+      <VBox HBox.hgrow="ALWAYS" spacing="10.0">
+         <ScrollPane fitToWidth="true" VBox.vgrow="ALWAYS" styleClass="cards-scroll-pane">
+            <content>
+               <TilePane fx:id="gridMatieres" hgap="14.0" vgap="14.0" prefColumns="2"
+                  styleClass="cards-grid" />
+            </content>
+         </ScrollPane>
+      </VBox>
+
+      <fx:include fx:id="relevePreview" source="RelevePreviewPane.fxml" />
+   </HBox>
 
    <HBox spacing="12.0" alignment="CENTER_RIGHT">
-      <Button fx:id="btnReleve" text="📄 Générer Relevé" onAction="#handleGenererReleve" styleClass="btn, btn-success"/>
-      <Button text="Fermer" onAction="#handleFermer" styleClass="btn, btn-secondary"/>
+      <Button fx:id="btnReleve" text="📄 Générer Relevé PDF" onAction="#handleGenererReleve"
+         styleClass="btn, btn-success" />
+      <Button text="Fermer" onAction="#handleFermer" styleClass="btn, btn-secondary" />
    </HBox>
 </VBox>

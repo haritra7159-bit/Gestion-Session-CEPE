@@ -1,5 +1,11 @@
 package mg.cepe.gestion.controller.eleve;
 
+import java.io.File;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Optional;
+
 import javafx.scene.control.ChoiceDialog;
 import javafx.stage.DirectoryChooser;
 import mg.cepe.gestion.model.*;
@@ -9,12 +15,6 @@ import mg.cepe.gestion.service.MatiereService;
 import mg.cepe.gestion.service.NoteService;
 import mg.cepe.gestion.util.CodeFormat;
 import mg.cepe.gestion.util.UiDialogs;
-
-import java.io.File;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Optional;
 
 /**
  * Bouton « Relevé » de la table élèves.
@@ -28,7 +28,7 @@ public final class EleveReleveActions {
     private final EleveNotesOpener notesOpener;
 
     public EleveReleveActions(NoteService noteService, MatiereService matiereService,
-                              EcoleService ecoleService, EleveNotesOpener notesOpener) {
+            EcoleService ecoleService, EleveNotesOpener notesOpener) {
         this.noteService = noteService;
         this.matiereService = matiereService;
         this.ecoleService = ecoleService;
@@ -36,7 +36,8 @@ public final class EleveReleveActions {
     }
 
     public void onReleveClick(Eleve eleve) {
-        if (eleve == null) return;
+        if (eleve == null)
+            return;
         // Vérification silencieuse
         if (!noteService.aDesNotes(eleve.getNumEleve())) {
             // Cas 1 : aucune note → dialogue de saisie
@@ -57,10 +58,12 @@ public final class EleveReleveActions {
         dialog.setHeaderText("Élève : " + eleve.getNom() + " " + eleve.getPrenom());
         dialog.setContentText("Année scolaire :");
         Optional<String> chosen = dialog.showAndWait();
-        if (chosen.isEmpty()) return;
+        if (chosen.isEmpty())
+            return;
         String annee = chosen.get();
         if (!UiDialogs.confirm("Générer le relevé PDF pour " + eleve.getNom() + " " + eleve.getPrenom()
-                + "\nAnnée scolaire : " + annee + " ?")) return;
+                + "\nAnnée scolaire : " + annee + " ?"))
+            return;
         generer(eleve, annee);
     }
 
@@ -77,10 +80,10 @@ public final class EleveReleveActions {
             }
             List<LigneReleve> lignes = new ArrayList<>();
             double totalP = 0;
-            int totalC = 0;
+            double totalC = 0;
             for (Note n : notes) {
                 Matiere m = matiereService.trouverParId(n.getNumMat());
-                int coef = m != null ? m.getCoef() : 1;
+                double coef = m != null ? m.getCoef() : 1.0;
                 String design = m != null ? m.getDesignMat() : n.getNumMat();
                 double pond = n.getNote() * coef;
                 totalP += pond;
@@ -93,7 +96,8 @@ public final class EleveReleveActions {
             DirectoryChooser chooser = new DirectoryChooser();
             chooser.setTitle("Enregistrer le relevé PDF");
             File dir = chooser.showDialog(null);
-            if (dir == null) return;
+            if (dir == null)
+                return;
             File out = new File(dir, "releve_" + eleve.getNumEleve() + "_" + annee + ".pdf");
             RelevePdfGenerator.generer(out.getAbsolutePath(), annee, eleve, nomEcole,
                     lignes, totalP, totalC, moyenne);

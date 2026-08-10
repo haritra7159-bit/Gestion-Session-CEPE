@@ -6,16 +6,16 @@ Application de bureau JavaFX pour la gestion complète d'une session du **Certif
 
 ## 🛠 Technologies
 
-| Couche | Technologie |
-| ------ | ----------- |
-| Langage | Java 25 |
-| UI | JavaFX 25 + FXML + CSS |
-| Base de données | PostgreSQL 16 |
-| Connexion JDBC | HikariCP (pool) |
-| Build | Maven 3.9+ |
-| Tests | JUnit 5 + Mockito |
-| PDF | OpenPDF |
-| Logs | SLF4J + Logback |
+| Couche          | Technologie            |
+| --------------- | ---------------------- |
+| Langage         | Java 25                |
+| UI              | JavaFX 25 + FXML + CSS |
+| Base de données | PostgreSQL 16          |
+| Connexion JDBC  | HikariCP (pool)        |
+| Build           | Maven 3.9+             |
+| Tests           | JUnit 5 + Mockito      |
+| PDF             | OpenPDF                |
+| Logs            | SLF4J + Logback        |
 
 ---
 
@@ -36,26 +36,30 @@ cd Gestion-Session-CEPE
 
 # 2. Créer la base de données
 psql -U postgres -f database/migration/create_cepe_schema.sql
-psql -U postgres -d cepe -f database/migration/insert_demo_data.sql
+psql -U postgres -d cepe -f database/migration/insertion_donnees_demo.sql
 
 # 3. Configurer la connexion DB
-# Modifier src/main/resources/application.properties
+# Modifier resources/application.properties
+# Exemple :
+# db.url=jdbc:postgresql://localhost:5432/cepe
+# db.user=postgres
+# db.password=mdp1706
 
 # 4. Compiler et lancer
-mvn clean javafx:run
+./mvnw.cmd clean javafx:run
 ```
 
 ### Modules
 
-| Module | Description |
-| ------ | ----------- |
-| 🏫 **Écoles** | Gestion des écoles participantes |
-| 🎓 **Élèves** | Inscription, modification, suppression + recherche intégrée |
-| 📝 **Notes** | Gestion des notes par élève et par matière (dialog intégré) |
-| 📚 **Matières** | Définition des matières et coefficients |
-| ⚖️ **Délibération** | Calcul automatique des moyennes pondérées et décisions |
-| 🏆 **Classement** | Classement par mérite des admis et des échoués |
-| 📄 **Relevés PDF** | Génération de relevés de notes formatés en PDF |
+| Module              | Description                                                 |
+| ------------------- | ----------------------------------------------------------- |
+| 🏫 **Écoles**       | Gestion des écoles participantes                            |
+| 🎓 **Élèves**       | Inscription, modification, suppression + recherche intégrée |
+| 📝 **Notes**        | Gestion des notes par élève et par matière (dialog intégré) |
+| 📚 **Matières**     | Définition des matières et coefficients                     |
+| ⚖️ **Délibération** | Calcul automatique des moyennes pondérées et décisions      |
+| 🏆 **Classement**   | Classement par mérite des admis et des échoués              |
+| 📄 **Relevés PDF**  | Génération de relevés de notes formatés en PDF              |
 
 ### Organisation
 
@@ -94,12 +98,12 @@ PostgreSQL
 
 ### Commandes utiles
 
-| Commande | Action |
-| -------- | ------ |
-| mvn clean compile | Compiler |
-| mvn javafx:run | Lancer l'application |
-| mvn clean test | Exécuter les tests |
-| mvn clean package | Générer le JAR |
+| Commande                 | Action               |
+| ------------------------ | -------------------- |
+| ./mvnw.cmd clean compile | Compiler             |
+| ./mvnw.cmd javafx:run    | Lancer l'application |
+| ./mvnw.cmd clean test    | Exécuter les tests   |
+| ./mvnw.cmd clean package | Générer le JAR       |
 
 ### Licence
 

@@ -1,5 +1,9 @@
 package mg.cepe.gestion.controller.matiere;
 
+import java.util.Collection;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import javafx.collections.FXCollections;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Spinner;
@@ -8,17 +12,13 @@ import mg.cepe.gestion.model.Matiere;
 import mg.cepe.gestion.util.CodeFormat;
 import mg.cepe.gestion.util.UiDialogs;
 
-import java.util.Collection;
-import java.util.List;
-import java.util.stream.Collectors;
-
 public final class MatiereFormHelper {
     private final ComboBox<String> cbNumMat;
     private final TextField txtDesignMat;
-    private final Spinner<Integer> spCoef;
+    private final Spinner<Double> spCoef;
     private String nextDefaultCode = "MAT-0001";
 
-    public MatiereFormHelper(ComboBox<String> cbNumMat, TextField txtDesignMat, Spinner<Integer> spCoef) {
+    public MatiereFormHelper(ComboBox<String> cbNumMat, TextField txtDesignMat, Spinner<Double> spCoef) {
         this.cbNumMat = cbNumMat;
         this.txtDesignMat = txtDesignMat;
         this.spCoef = spCoef;
@@ -41,13 +41,15 @@ public final class MatiereFormHelper {
 
     public void clearFields() {
         txtDesignMat.clear();
-        spCoef.getValueFactory().setValue(1);
+        spCoef.getValueFactory().setValue(0.5);
     }
 
     public String resolveCode() {
         String v = cbNumMat.getEditor().getText();
-        if (v == null || v.isBlank()) v = cbNumMat.getValue();
-        if (v == null || v.isBlank()) return nextDefaultCode;
+        if (v == null || v.isBlank())
+            v = cbNumMat.getValue();
+        if (v == null || v.isBlank())
+            return nextDefaultCode;
         return v.trim().toUpperCase();
     }
 
@@ -64,6 +66,7 @@ public final class MatiereFormHelper {
     }
 
     public Matiere build() {
-        return new Matiere(resolveCode(), txtDesignMat.getText().trim(), spCoef.getValue());
+        Double coef = spCoef.getValue();
+        return new Matiere(resolveCode(), txtDesignMat.getText().trim(), coef != null ? coef : 1.0);
     }
 }
