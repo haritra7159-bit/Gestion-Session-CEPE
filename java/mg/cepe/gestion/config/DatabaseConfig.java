@@ -20,6 +20,13 @@ public final class DatabaseConfig {
         } catch (IOException e) {
             throw new RuntimeException("Erreur chargement properties", e);
         }
+        try (InputStream isLocal = DatabaseConfig.class.getResourceAsStream("/application-local.properties")) {
+            if (isLocal != null) {
+                props.load(isLocal); // écrase les valeurs du fichier commun
+            }
+        } catch (IOException e) {
+            // on ignore si le fichier n'existe pas
+        }
 
         HikariConfig config = new HikariConfig();
         config.setJdbcUrl(firstNonBlank(
