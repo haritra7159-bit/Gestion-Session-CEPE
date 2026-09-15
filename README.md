@@ -1,4 +1,4 @@
-# 🎓 Gestion Session CEPE
+# Gestion Session CEPE
 
 Application de bureau JavaFX pour la gestion complète d'une session du **Certificat d'Étude Primaire Élémentaire (CEPE)**.
 
@@ -19,7 +19,7 @@ Application de bureau JavaFX pour la gestion complète d'une session du **Certif
 
 ---
 
-## ⚡ Prérequis
+## Prérequis
 
 - Java 25
 - Maven 3.9+
@@ -27,7 +27,7 @@ Application de bureau JavaFX pour la gestion complète d'une session du **Certif
 
 ---
 
-## 🚀 Installation
+## Installation
 
 ```bash
 # 1. Cloner le dépôt
@@ -53,13 +53,13 @@ psql -U postgres -d cepe -f database/migration/insertion_donnees_demo.sql
 
 | Module              | Description                                                 |
 | ------------------- | ----------------------------------------------------------- |
-| 🏫 **Écoles**       | Gestion des écoles participantes                            |
-| 🎓 **Élèves**       | Inscription, modification, suppression + recherche intégrée |
-| 📝 **Notes**        | Gestion des notes par élève et par matière (dialog intégré) |
-| 📚 **Matières**     | Définition des matières et coefficients                     |
-| ⚖️ **Délibération** | Calcul automatique des moyennes pondérées et décisions      |
-| 🏆 **Classement**   | Classement par mérite des admis et des échoués              |
-| 📄 **Relevés PDF**  | Génération de relevés de notes formatés en PDF              |
+|  **Écoles**       | Gestion des écoles participantes                            |
+|  **Élèves**       | Inscription, modification, suppression + recherche intégrée |
+|  **Notes**        | Gestion des notes par élève et par matière (dialog intégré) |
+|  **Matières**     | Définition des matières et coefficients                     |
+|  **Délibération** | Calcul automatique des moyennes pondérées et décisions      |
+|  **Classement**   | Classement par mérite des admis et des échoués              |
+|  **Relevés PDF**  | Génération de relevés de notes formatés en PDF              |
 
 ### Organisation
 
